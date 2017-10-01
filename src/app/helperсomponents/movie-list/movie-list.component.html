@@ -1,3 +1,27 @@
-<p>
-  movie-list works!
-</p>
+<div class="list flex-container">
+  <div *ngFor="let movie of data" class="movie flex-item">
+      <p class="title"> {{ movie.MovieId }}</p>
+      <p class="title"> {{ movie.Title }}</p>
+      <p class="title"> {{ movie.Description }}</p>
+      <p class="title"> {{ movie.Length }}</p>
+      <p class="title"> {{ movie.Slogan }}</p>
+      <p class="title"> {{ movie.PremiereDate }}</p>
+      <p class="title"> {{ movie.Rating }}</p>
+  </div>
+</div>
+
+
+
+<!-- 
+"MovieId": 1,
+"Title": "string",
+"Description": "string",
+"Length": 0,
+"Slogan": "string",
+"PremiereDate": "2017-10-01T00:00:00.000Z",
+"RatingAgeLimit": "string",
+"Budget": 0,
+"Rating": 0,
+"TotalViews": 0,
+"TrailerLink": "string" 
+-->

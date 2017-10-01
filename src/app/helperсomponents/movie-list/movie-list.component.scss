@@ -1,0 +1,23 @@
+.flex-container {
+    // display: -webkit-flex;
+    // display: flex;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+    // align-items: center;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-align-content: center;
+    align-content: center;
+    width: 100%;
+    background-color: lightgrey;
+}
+
+.flex-item {
+    padding: 0px;
+    width: 200px;
+    height: 200px;
+    margin: 5px;
+    background: #C7C7C7;
+}
