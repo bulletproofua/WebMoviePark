@@ -14,21 +14,21 @@ export class AppComponent {
   constructor(private realTime : RealTime, private router : Router) { }
 
   ngOnInit() {
-    // this.isAuthorized = true;
-    // this.realTime.onAuthenticated().subscribe(() => {
-    //     console.log("app.component | onAuthenticated");
+    this.isAuthorized = true;
+    this.realTime.onAuthenticated().subscribe(() => {
+        console.log("app.component | onAuthenticated");
         
-    //     this.isAuthorized = true;
-    //     this.router.navigateByUrl('/sesion-list');
-    // });
+        this.isAuthorized = true;
+        this.router.navigateByUrl('/sesion-list');
+    });
     
-    // this.realTime.onUnAuthorized().subscribe(() => {
-    //     console.log("app.component | onUnAuthorized");
+    this.realTime.onUnAuthorized().subscribe(() => {
+        console.log("app.component | onUnAuthorized");
 
-    //     this.isAuthorized = false;
-    //     this.router.navigateByUrl('/singup');
+        this.isAuthorized = false;
+        this.router.navigateByUrl('/singup');
         
-    //     this.realTime.onReady().subscribe();
-    // });
+        this.realTime.onReady().subscribe();
+    });
   }
 }

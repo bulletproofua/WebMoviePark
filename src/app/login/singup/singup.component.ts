@@ -47,7 +47,7 @@ export class SingupComponent {
         this.userApi.login(credentials).subscribe(
             (ac : AccessToken) => {
                 this.userAC = ac;
-                this.router.navigateByUrl('/sesion-list');
+                this.router.navigateByUrl('/Movies');
             },
             (err) => {
                 this.form.setErrors({
@@ -60,8 +60,12 @@ export class SingupComponent {
     
     logout() {
         this.userApi.logout().subscribe(
-            () => console.log("Logged out : "),
+            () => {
+                console.log("Logged out : "),
+                this.router.navigateByUrl('/singup')
+            },
             (err) => console.log("ERROR : ", err)
+            
         );
     }
 }
