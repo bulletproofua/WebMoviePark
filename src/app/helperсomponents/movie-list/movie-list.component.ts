@@ -38,6 +38,7 @@ export class MovieListComponent {
                           this.fields = Object.keys(instances[0]);
                       }
                       console.log("result : ", instances);
+                      instances.length = 4;
                       this.data = instances;
                   } else {
                       console.log("errors : ", instances.error);

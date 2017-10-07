@@ -19,14 +19,14 @@ export class AppComponent {
         console.log("app.component | onAuthenticated");
         
         this.isAuthorized = true;
-        this.router.navigateByUrl('/sesion-list');
+        // this.router.navigateByUrl('/sesion-list');
     });
     
     this.realTime.onUnAuthorized().subscribe(() => {
         console.log("app.component | onUnAuthorized");
 
         this.isAuthorized = false;
-        this.router.navigateByUrl('/singup');
+        // this.router.navigateByUrl('/singup');
         
         this.realTime.onReady().subscribe();
     });

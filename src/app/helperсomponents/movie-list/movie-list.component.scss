@@ -1,3 +1,15 @@
+$aboutBackground: red;
+
+p {
+    margin: 0px;
+    padding: 0px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 .flex-container {
     // display: -webkit-flex;
     // display: flex;
@@ -11,13 +23,53 @@
     -webkit-align-content: center;
     align-content: center;
     width: 100%;
+    height: auto;
     background-color: lightgrey;
 }
 
 .flex-item {
     padding: 0px;
-    width: 200px;
-    height: 200px;
+    width: 270px;
+    height: 470px;
     margin: 5px;
     background: #C7C7C7;
+}
+
+.movie {
+    // overflow: hide;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: white;
+    // margin-bottom: 10px;
+}
+
+div.filmName {
+    text-align: center;
+    padding: 10px 10px;
+}
+
+.poster {
+    position: relative;
+
+}
+.about {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    span {
+        background-color: $aboutBackground;
+        color: white;
+        border-radius: 0px 50px 50px 0px;
+        padding: 5px;
+        i {
+            color: $aboutBackground;
+        }
+    }
+    p {
+        padding: 5px 0px;
+        margin: 0px;
+    }
+}
+
+.rating {
+    background-color: #3E3ED3;
 }
