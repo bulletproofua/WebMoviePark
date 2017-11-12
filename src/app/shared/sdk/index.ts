@@ -74,6 +74,7 @@ import { UsersApi } from './services/custom/Users';
 import { StaffApi } from './services/custom/Staff';
 import { MoviesPhotosApi } from './services/custom/MoviesPhotos';
 import { AprioriAlgorithmApi } from './services/custom/AprioriAlgorithm';
+import { CollaborativeFilteringApi } from './services/custom/CollaborativeFiltering';
 /**
 * @module SDKBrowserModule
 * @description
@@ -131,6 +132,7 @@ export class SDKBrowserModule {
         StaffApi,
         MoviesPhotosApi,
         AprioriAlgorithmApi,
+        CollaborativeFilteringApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser },
         { provide: SocketDriver, useClass: SocketBrowser }

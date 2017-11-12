@@ -10,15 +10,15 @@ import { JSONSearchParams } from '../core/search.params';
 import { ErrorHandler } from '../core/error.service';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Rx';
-import { AprioriAlgorithm } from '../../models/AprioriAlgorithm';
+import { CollaborativeFiltering } from '../../models/CollaborativeFiltering';
 import { SocketConnection } from '../../sockets/socket.connections';
 
 
 /**
- * Api services for the `AprioriAlgorithm` model.
+ * Api services for the `CollaborativeFiltering` model.
  */
 @Injectable()
-export class AprioriAlgorithmApi extends BaseLoopBackApi {
+export class CollaborativeFilteringApi extends BaseLoopBackApi {
 
   constructor(
     @Inject(Http) protected http: Http,
@@ -36,29 +36,23 @@ export class AprioriAlgorithmApi extends BaseLoopBackApi {
    *
    * @param {string} currentUserId 
    *
-   * @param {string} support 
-   *
-   * @param {string} confidence 
-   *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
    *   from the server.
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `AprioriAlgorithm` object.)
+   * This usually means the response is a `CollaborativeFiltering` object.)
    * </em>
    */
-  public AprioriAlgorithm(currentUserId: any, support: any, confidence: any, customHeaders?: Function): Observable<any> {
+  public Collaborativefiltering(currentUserId: any, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/aprioriAlgorithms/AprioriAlgorithm";
+    "/collaborativeFilterings/Collaborativefiltering";
     let _routeParams: any = {};
     let _postBody: any = {};
     let _urlParams: any = {};
     if (typeof currentUserId !== 'undefined' && currentUserId !== null) _urlParams.currentUserId = currentUserId;
-    if (typeof support !== 'undefined' && support !== null) _urlParams.support = support;
-    if (typeof confidence !== 'undefined' && confidence !== null) _urlParams.confidence = confidence;
     let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
     return result;
   }
@@ -68,38 +62,32 @@ export class AprioriAlgorithmApi extends BaseLoopBackApi {
    *
    * @param {string} currentUserId 
    *
-   * @param {string} support 
-   *
-   * @param {string} confidence 
-   *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
    *   from the server.
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `AprioriAlgorithm` object.)
+   * This usually means the response is a `CollaborativeFiltering` object.)
    * </em>
    */
-  public ApriorialgorithmAndCollaborativefiltering(currentUserId: any, support: any, confidence: any, customHeaders?: Function): Observable<any> {
+  public similarity(currentUserId: any, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/aprioriAlgorithms/ApriorialgorithmAndCollaborativefiltering";
+    "/collaborativeFilterings/similarity";
     let _routeParams: any = {};
     let _postBody: any = {};
     let _urlParams: any = {};
     if (typeof currentUserId !== 'undefined' && currentUserId !== null) _urlParams.currentUserId = currentUserId;
-    if (typeof support !== 'undefined' && support !== null) _urlParams.support = support;
-    if (typeof confidence !== 'undefined' && confidence !== null) _urlParams.confidence = confidence;
     let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
     return result;
   }
 
   /**
    * The name of the model represented by this $resource,
-   * i.e. `AprioriAlgorithm`.
+   * i.e. `CollaborativeFiltering`.
    */
   public getModelName() {
-    return "AprioriAlgorithm";
+    return "CollaborativeFiltering";
   }
 }

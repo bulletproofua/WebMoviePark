@@ -9,8 +9,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SingupComponent } from './login/singup/singup.component';
 import { MainpageComponent } from './movie/mainpage/mainpage.component';
 import { RecommendationsComponent } from './movie/recommendations/recommendations.component';
-import { MovieListComponent } from './helperсomponents/movie-list/movie-list.component;
-import { RatingComponent } from './helpercomponents/rating/rating.component'';
+import { RatingComponent } from './helperсomponents/rating/rating.component';
+import { MovieListComponent} from './helperсomponents/movie-list/movie-list.component';
 
 @NgModule({
   declarations: [
@@ -19,8 +19,7 @@ import { RatingComponent } from './helpercomponents/rating/rating.component'';
     SingupComponent,
     MainpageComponent,
     RecommendationsComponent,
-    MovieListComponen,
-    RatingComponentt
+    RatingComponent
   ],
   imports: [
     BrowserModule,

@@ -26,6 +26,7 @@ import { Users } from '../../models/Users';
 import { Staff } from '../../models/Staff';
 import { MoviesPhotos } from '../../models/MoviesPhotos';
 import { AprioriAlgorithm } from '../../models/AprioriAlgorithm';
+import { CollaborativeFiltering } from '../../models/CollaborativeFiltering';
 
 export interface Models { [name: string]: any }
 
@@ -59,6 +60,7 @@ export class SDKModels {
     Staff: Staff,
     MoviesPhotos: MoviesPhotos,
     AprioriAlgorithm: AprioriAlgorithm,
+    CollaborativeFiltering: CollaborativeFiltering,
     
   };
 

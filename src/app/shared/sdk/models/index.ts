@@ -25,5 +25,6 @@ export * from './Users';
 export * from './Staff';
 export * from './MoviesPhotos';
 export * from './AprioriAlgorithm';
+export * from './CollaborativeFiltering';
 export * from './BaseModels';
 export * from './FireLoopRef';
