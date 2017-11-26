@@ -1,4 +1,8 @@
 /* tslint:disable */
+import {
+  Movies,
+  Users
+} from '../index';
 
 declare var Object: any;
 export interface UserInterface {
@@ -9,6 +13,8 @@ export interface UserInterface {
   "id"?: number;
   "password"?: string;
   accessTokens?: any[];
+  movies?: Movies[];
+  users?: Users;
 }
 
 export class User implements UserInterface {
@@ -19,6 +25,8 @@ export class User implements UserInterface {
   "id": number;
   "password": string;
   accessTokens: any[];
+  movies: Movies[];
+  users: Users;
   constructor(data?: UserInterface) {
     Object.assign(this, data);
   }
@@ -81,6 +89,16 @@ export class User implements UserInterface {
           name: 'accessTokens',
           type: 'any[]',
           model: ''
+        },
+        movies: {
+          name: 'movies',
+          type: 'Movies[]',
+          model: 'Movies'
+        },
+        users: {
+          name: 'users',
+          type: 'Users',
+          model: 'Users'
         },
       }
     }

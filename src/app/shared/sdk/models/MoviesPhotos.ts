@@ -6,7 +6,7 @@ import {
 
 declare var Object: any;
 export interface MoviesPhotosInterface {
-  "MoviePhotoId": number;
+  "MoviesPhotosId": number;
   "MovieId": number;
   "PhotoId": number;
   movies?: Movies;
@@ -14,7 +14,7 @@ export interface MoviesPhotosInterface {
 }
 
 export class MoviesPhotos implements MoviesPhotosInterface {
-  "MoviePhotoId": number;
+  "MoviesPhotosId": number;
   "MovieId": number;
   "PhotoId": number;
   movies: Movies;
@@ -51,8 +51,8 @@ export class MoviesPhotos implements MoviesPhotosInterface {
       plural: 'MoviesPhotos',
       path: 'MoviesPhotos',
       properties: {
-        "MoviePhotoId": {
-          name: 'MoviePhotoId',
+        "MoviesPhotosId": {
+          name: 'MoviesPhotosId',
           type: 'number'
         },
         "MovieId": {

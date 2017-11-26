@@ -33,6 +33,7 @@ export class SingupComponent {
     get password() {
         return this.form.get('password');
     }
+
     
     constructor(private userApi : UserApi, private router : Router) { }
     

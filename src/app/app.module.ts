@@ -6,11 +6,14 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { SingupComponent } from './login/singup/singup.component';
 import { MainpageComponent } from './movie/mainpage/mainpage.component';
 import { RecommendationsComponent } from './movie/recommendations/recommendations.component';
 import { RatingComponent } from './helperсomponents/rating/rating.component';
 import { MovieListComponent} from './helperсomponents/movie-list/movie-list.component';
+
+import { SingupComponent } from './login/singup/singup.component';
+import { SinginComponent } from './login/singin/singin.component';
+import { MainComponent } from './login/main/main.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,10 @@ import { MovieListComponent} from './helperсomponents/movie-list/movie-list.com
     SingupComponent,
     MainpageComponent,
     RecommendationsComponent,
-    RatingComponent
+    RatingComponent,
+    MovieListComponent,
+    SinginComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
@@ -28,8 +34,8 @@ import { MovieListComponent} from './helperсomponents/movie-list/movie-list.com
     SDKBrowserModule.forRoot(),
     RouterModule.forRoot([
       {
-          path: 'singup',
-          component: SingupComponent
+          path: 'login',
+          component: MainComponent
       },
       {
         path: 'Movies',

@@ -1,8 +1,11 @@
-$aboutBackground: red;
+$aboutBackground: rgb(99, 99, 99);
 
 p {
     margin: 0px;
     padding: 0px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 img {
@@ -24,13 +27,13 @@ img {
     align-content: center;
     width: 100%;
     height: auto;
-    background-color: lightgrey;
+    background-color: white;
 }
 
 .flex-item {
     padding: 0px;
     width: 270px;
-    height: 470px;
+    height: 450px;
     margin: 5px;
     background: #C7C7C7;
 }

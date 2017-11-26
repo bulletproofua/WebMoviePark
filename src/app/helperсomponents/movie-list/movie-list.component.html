@@ -1,27 +1,27 @@
 <div class="list flex-container">
-    <div *ngFor="let movie of data" class="movie flex-item">
-      <div class="poster">
-        <img src="https://cs8.pikabu.ru/post_img/2016/04/24/10/1461520205172721981.jpg" alt="{{movie.Title}}">
-        <div class="about">
-          <!-- <p class="title"> {{ movie.Description }}</p> -->
-          <p>
-              <span> KP : 8.2 <i>.</i></span>
-          </p>
-          <p>
-            <span>IMB : 8.0  <i>.</i></span>   
-          </p>
-          <p>
-            <span>DICH : 2.0  <i>.</i></span>
-          </p>       
-        </div>
+  <div *ngFor="let movie of data" class="movie flex-item">
+    <div class="poster">
+      <img src="https://cs8.pikabu.ru/post_img/2016/04/24/10/1461520205172721981.jpg" alt="{{movie.Title}}">
+      <div class="about">
+        <!-- <p class="title"> {{ movie.Description }}</p> -->
+        <p>
+            <span> KP : 8.2 <i>.</i></span>
+        </p>
+        <p>
+          <span>IMB : 8.0  <i>.</i></span>   
+        </p>
+        <p>
+          <span>DICH : 2.0  <i>.</i></span>
+        </p>       
       </div>
-      <div class="rating">
-        <p>rating</p>
-      </div>
-      <div class="filmName">
-        <p> {{ movie.Title }}</p>
-      </div>  
     </div>
+    <!-- <div class="rating">
+      <p>rating</p>
+    </div> -->
+    <div class="filmName">
+      <p> {{ movie.Title }}</p>
+    </div>  
+  </div>
 </div>
 
 

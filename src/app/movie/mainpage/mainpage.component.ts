@@ -23,13 +23,22 @@ export class MainpageComponent implements OnInit {
   constructor(private realTime: RealTime, private router: Router) { }
 
   ngOnInit() {
-    this.realTime.onReady().subscribe(() => this.setup());
+    this.realTime.onReady().subscribe(
+      (res) => {
+        console.log('this.serviceRef', this.serviceRef)
+        this.serviceRef = this.realTime.FireLoop.ref<Movies>(Movies);
+      //  this.setup() 
+      },
+      (err:any) => {
+        console.log('err', err)
+      })
   }
 
   setup(): void {
     this.ngOnDestroy();
 
     this.serviceRef = this.realTime.FireLoop.ref<Movies>(Movies);
+    console.log('this.serviceRef', this.serviceRef)
   }
   ngOnDestroy() {
     if (this.serviceRef) {
