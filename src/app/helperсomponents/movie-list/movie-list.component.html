@@ -1,7 +1,10 @@
 <div class="list flex-container">
+  <div *ngIf="listIsClean == true" class="clear">
+    <p>list Is clean</p>
+  </div>
   <div *ngFor="let movie of data" class="movie flex-item">
     <div class="poster">
-      <img src="https://cs8.pikabu.ru/post_img/2016/04/24/10/1461520205172721981.jpg" alt="{{movie.Title}}">
+      <img src="assets/{{movie.Link}}" alt="{{movie.Title}}">
       <div class="about">
         <!-- <p class="title"> {{ movie.Description }}</p> -->
         <p>

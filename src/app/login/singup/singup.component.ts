@@ -62,7 +62,6 @@ export class SingupComponent {
     logout() {
         this.userApi.logout().subscribe(
             () => {
-                console.log("Logged out : "),
                 this.router.navigateByUrl('/singup')
             },
             (err) => console.log("ERROR : ", err)
