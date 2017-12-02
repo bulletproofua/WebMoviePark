@@ -33,6 +33,15 @@
   </div>
 
   <div>
+    <p>ExternalServicesRatings ID1 IMDB</p>
+    <input [(ngModel)]="ExternalServicesRatings1" type="text">
+  </div>
+  <div>
+      <p>ExternalServicesRatings ID2</p>
+      <input [(ngModel)]="ExternalServicesRatings2" type="text">
+  </div>
+
+  <div>
     <p>Cantry</p>
     <button (click)="onAdd(SelectedCountryNamesList, elements)" *ngFor="let elements of CountriesList"> {{elements.CountryName}} </button>
     <ul>
@@ -49,4 +58,5 @@
   </div>
 
   <button (click)="onAddMovie()" class="btn btn-success"> Add movie </button>
+  <button (click)="onReset()" class="btn btn-danger"> Reset </button>
 </div>

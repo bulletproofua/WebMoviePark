@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { MoviesApi, CountriesApi, GenresApi, MoviesCountriesApi, MoviesGenresApi } from '../../shared/sdk/index';
+import { MoviesApi, CountriesApi, GenresApi, MoviesCountriesApi, MoviesGenresApi, ExternalServicesRatingsApi } from '../../shared/sdk/index';
 
 @Component({
   selector: 'app-admin-panel',
@@ -22,13 +22,16 @@ export class AdminPanelComponent implements OnInit {
   private RatingAgeLimit: string = null;
   private Budget: string = null;
   private TrailerLink: string = null;
+  private ExternalServicesRatings1: number = null;
+  private ExternalServicesRatings2: number = null;
 
   constructor( 
     private MoviesApi: MoviesApi, 
     private CountriesApi: CountriesApi, 
     private GenresApi: GenresApi, 
     private MoviesCountrisApi: MoviesCountriesApi,
-    private MoviesGenresApi: MoviesGenresApi
+    private MoviesGenresApi: MoviesGenresApi,
+    private ExternalServicesRatings: ExternalServicesRatingsApi
   
   ) { }
 
@@ -55,6 +58,42 @@ export class AdminPanelComponent implements OnInit {
   onDel(arr:Array<any>, context:any){
     let index = arr.indexOf(context);
     arr.splice(index, 1);
+  }
+
+  postExternalServicesRatings( ES: number, MovieId: number, Rating: number){
+    if( Rating !== null || Rating !== undefined ){
+      this.ExternalServicesRatings.create(
+        {
+          "ExternalServiceId": ES,
+          "MovieId": MovieId,
+          "Rating": Rating
+        }
+      ).subscribe(
+        res => {
+          console.log('ExternalServicesRatings res ', res)
+        },
+        err => {
+          console.log('ExternalServicesRatings err', err)
+        }
+      )
+    }
+  }
+
+  onReset(){
+    this.Title                    = null;
+    this.Description              = null;
+    this.Length                   = null;
+    this.Slogan                   = null;
+    this.PremiereDate             = null;
+    this.RatingAgeLimit           = null;
+    this.Budget                   = null;
+    this.TrailerLink              = null;
+    this.SelectedGenresList       = [];
+    this.SelectedCountryNamesList = [];
+    this.ExternalServicesRatings1 = null;
+    this.ExternalServicesRatings2 = null;
+
+    console.log("RESER -------- done");
   }
 
   onAddMovie(){
@@ -102,6 +141,9 @@ export class AdminPanelComponent implements OnInit {
           }
         )
         
+        this.postExternalServicesRatings(1, res.MovieId, this.ExternalServicesRatings1 )
+        this.postExternalServicesRatings(2, res.MovieId, this.ExternalServicesRatings2 )
+
         this.SelectedCountryNamesList.forEach(element =>{
           this.MoviesCountrisApi.create({ 
             "MovieId": res.MovieId,
@@ -109,6 +151,7 @@ export class AdminPanelComponent implements OnInit {
           }).subscribe(
             res => {
               console.log('MoviesCountrisApi res', res)
+
             },
             err => {
               console.log('MoviesCountrisApi err', err)
