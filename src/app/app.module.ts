@@ -14,6 +14,7 @@ import { MovieListComponent} from './helperсomponents/movie-list/movie-list.com
 import { SingupComponent } from './login/singup/singup.component';
 import { SinginComponent } from './login/singin/singin.component';
 import { MainComponent } from './login/main/main.component';
+import { AdminPanelComponent } from './helperсomponents/admin-panel/admin-panel.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MainComponent } from './login/main/main.component';
     RatingComponent,
     MovieListComponent,
     SinginComponent,
-    MainComponent
+    MainComponent,
+    AdminPanelComponent
   ],
   imports: [
     BrowserModule,
@@ -34,8 +36,12 @@ import { MainComponent } from './login/main/main.component';
     SDKBrowserModule.forRoot(),
     RouterModule.forRoot([
       {
-          path: 'login',
-          component: MainComponent
+        path: 'login',
+        component: MainComponent
+      },
+      {
+        path: 'admin',
+        component: AdminPanelComponent
       },
       {
         path: 'Movies',
@@ -46,8 +52,8 @@ import { MainComponent } from './login/main/main.component';
         component: RecommendationsComponent
       },
       {
-          path: '**', 
-          component: SingupComponent
+        path: '**', 
+        component: SingupComponent
       }
   ]),
   ],

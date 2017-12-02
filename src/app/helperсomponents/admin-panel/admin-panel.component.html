@@ -1,0 +1,52 @@
+<div class="col-md-10 col-md-offset-1">
+  <div>
+    <p>Title</p>
+    <input [(ngModel)]="Title" type="text">
+  </div>
+  <div>
+    <p>Description</p>
+    <textarea [(ngModel)]="Description" name="" id="" cols="30" rows="10"></textarea>
+  </div>
+  <div>
+    <p>Length</p>
+    <input [(ngModel)]="Length" type="text">
+  </div>
+  <div>
+    <p>Slogan</p>
+    <textarea [(ngModel)]="Slogan" name="" id="" cols="30" rows="10"></textarea>
+  </div>
+  <div>
+    <p>PremiereDate</p>
+    <input [(ngModel)]="PremiereDate" type="text">
+  </div>
+  <div>
+    <p>RatingAgeLimit</p>
+    <input [(ngModel)]="RatingAgeLimit" type="text">
+  </div>
+  <div>
+    <p>Budget</p>
+    <input  [(ngModel)]="Budget" type="text">
+  </div>
+  <div>
+    <p>TrailerLink</p>
+    <input [(ngModel)]="TrailerLink" type="text">
+  </div>
+
+  <div>
+    <p>Cantry</p>
+    <button (click)="onAdd(SelectedCountryNamesList, elements)" *ngFor="let elements of CountriesList"> {{elements.CountryName}} </button>
+    <ul>
+      <li  *ngFor="let elem of SelectedCountryNamesList"><button (click)="onDel(SelectedCountryNamesList, elem)"> X </button> {{elem.CountryName}} </li>
+    </ul>
+  </div>
+
+  <div>
+    <p>Genres</p>
+    <button (click)="onAdd(SelectedGenresList, elements)"*ngFor="let elements of GenresList"> {{ elements.GenreType}} </button>
+    <ul>
+      <li  *ngFor="let elements of SelectedGenresList"><button (click)="onDel(SelectedGenresList, elem)"> X </button> {{elements.GenreType}} </li>
+    </ul>
+  </div>
+
+  <button (click)="onAddMovie()" class="btn btn-success"> Add movie </button>
+</div>
