@@ -73,10 +73,13 @@ export class MovieListComponent implements OnChanges {
                         // if( instances[0].UsersMovies[0] )
                         console.log('instances[0].UsersMovies[0] --->', instances[0].UsersMovies[0].Rating)
                         
-
-                          instances.length = 3;
+            
+                        //   instances.length = 41;
                         this.data = instances;
                         this.data.forEach( val => {
+                            if( val.UsersMovies === undefined || val.UsersMovies == 0 ) {
+                                val.UsersMovies.push({"Rating": 0});
+                            }
                             this.MoviesApi.getPhotos(val.MovieId).subscribe(
                                 (res: any) => {
                                     val.PhotoId = res[0].PhotoId;
@@ -87,7 +90,7 @@ export class MovieListComponent implements OnChanges {
                                 }
                             )                          
                         })
-                        console.log('this.data', this.data)
+                        console.log('this.data', this.data[41])
                     } else {
                         console.log("errors : ", instances.error);
                     }
