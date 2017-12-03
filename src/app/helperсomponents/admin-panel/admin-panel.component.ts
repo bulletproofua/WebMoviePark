@@ -21,10 +21,11 @@ export class AdminPanelComponent implements OnInit {
   private PremiereDate: string = null; 
   private RatingAgeLimit: string = null;
   private Budget: string = null;
-  private BudgetOption: string = null;
+  private BudgetOption: string = "m";
   private TrailerLink: string = null;
   private ExternalServicesRatings1: number = null;
   private ExternalServicesRatings2: number = null;
+
 
   constructor( 
     private MoviesApi: MoviesApi, 
@@ -88,6 +89,7 @@ export class AdminPanelComponent implements OnInit {
     this.PremiereDate             = null;
     this.RatingAgeLimit           = null;
     this.Budget                   = null;
+    this.BudgetOption             = "m";
     this.TrailerLink              = null;
     this.SelectedGenresList       = [];
     this.SelectedCountryNamesList = [];
@@ -105,10 +107,17 @@ export class AdminPanelComponent implements OnInit {
     console.log('this.Slogan        ', this.Slogan)
     console.log('this.PremiereDate  ', this.PremiereDate)
     console.log('this.RatingAgeLimit', this.RatingAgeLimit)
-    console.log('this.Budget        ', this.Budget + this.BudgetOption)
+    console.log('this.Budget        ', this.Budget)
+    console.log('this.BudgetOption  ', this.BudgetOption)    
     console.log('this.TrailerLink   ', this.TrailerLink)
     console.log('SelectedGenresList', this.SelectedGenresList)
     console.log('SelectedCountryNamesList', this.SelectedCountryNamesList)
+
+    if( this.Budget === null || this.Budget === undefined) {
+      this.Budget = null;
+    } else {
+      this.Budget = this.Budget + ((this.BudgetOption === "m") ? "000000" : "000");
+    }
 
     let data = {
       "MovieId": 0,
@@ -118,11 +127,12 @@ export class AdminPanelComponent implements OnInit {
       "Slogan": this.Slogan || null,
       "PremiereDate": this.PremiereDate || null,
       "RatingAgeLimit": this.RatingAgeLimit || null,
-      "Budget": this.Budget + ((this.BudgetOption === "m") ? "000000" : "000") || null,
+      "Budget": this.Budget,
       "TotalViews": 0,
       "Rating": 0,
       "TrailerLink": this.TrailerLink || null
     }
+    console.log('data', data)
 
     this.MoviesApi.create(data).subscribe(
       res => {
