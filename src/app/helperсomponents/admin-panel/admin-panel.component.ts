@@ -21,6 +21,7 @@ export class AdminPanelComponent implements OnInit {
   private PremiereDate: string = null; 
   private RatingAgeLimit: string = null;
   private Budget: string = null;
+  private BudgetOption: string = null;
   private TrailerLink: string = null;
   private ExternalServicesRatings1: number = null;
   private ExternalServicesRatings2: number = null;
@@ -104,7 +105,7 @@ export class AdminPanelComponent implements OnInit {
     console.log('this.Slogan        ', this.Slogan)
     console.log('this.PremiereDate  ', this.PremiereDate)
     console.log('this.RatingAgeLimit', this.RatingAgeLimit)
-    console.log('this.Budget        ', this.Budget)
+    console.log('this.Budget        ', this.Budget + this.BudgetOption)
     console.log('this.TrailerLink   ', this.TrailerLink)
     console.log('SelectedGenresList', this.SelectedGenresList)
     console.log('SelectedCountryNamesList', this.SelectedCountryNamesList)
@@ -117,7 +118,7 @@ export class AdminPanelComponent implements OnInit {
       "Slogan": this.Slogan || null,
       "PremiereDate": this.PremiereDate || null,
       "RatingAgeLimit": this.RatingAgeLimit || null,
-      "Budget": this.Budget || null,
+      "Budget": this.Budget + ((this.BudgetOption === "m") ? "000000" : "000") || null,
       "TotalViews": 0,
       "Rating": 0,
       "TrailerLink": this.TrailerLink || null
@@ -126,10 +127,11 @@ export class AdminPanelComponent implements OnInit {
     this.MoviesApi.create(data).subscribe(
       res => {
         console.log('res', res)
+        var title = res.Title.replace(":", "");
         this.MoviesApi.createPhotos(
           res.MovieId,
           {
-            "Link": "images/posters/"+ res.Title +".jpg",
+            "Link": "images/posters/"+ title +".jpg",
             "PhotoTypeId": 1
           }
         ).subscribe(

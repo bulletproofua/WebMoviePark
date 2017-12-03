@@ -1,10 +1,14 @@
 textarea {
     height: 70px;
-    width: 100%;
+    width: 75%;
 }
 
 input {
-    width: 100%;
+    width: 75%;
+
+    &.budget {
+        width: 100px;
+    }
 }
 
 p {

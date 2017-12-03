@@ -25,7 +25,11 @@
   </div>
   <div>
     <p>Budget</p>
-    <input  [(ngModel)]="Budget" type="text">
+    <input class="budget" [(ngModel)]="Budget" type="text">
+    <select [(ngModel)]="Budget-option">
+      <option value="m">m</option>
+      <option value="k">k</option>
+    </select>
   </div>
   <div>
     <p>TrailerLink</p>
@@ -42,7 +46,7 @@
   </div>
 
   <div>
-    <p>Cantry</p>
+    <p>Countries</p>
     <button (click)="onAdd(SelectedCountryNamesList, elements)" *ngFor="let elements of CountriesList"> {{elements.CountryName}} </button>
     <ul>
       <li  *ngFor="let elem of SelectedCountryNamesList"><button (click)="onDel(SelectedCountryNamesList, elem)"> X </button> {{elem.CountryName}} </li>
