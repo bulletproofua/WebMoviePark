@@ -16,6 +16,8 @@ import { SinginComponent } from './login/singin/singin.component';
 import { MainComponent } from './login/main/main.component';
 import { AdminPanelComponent } from './helperсomponents/admin-panel/admin-panel.component';
 
+import { StarRatingModule } from 'angular-star-rating';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +35,7 @@ import { AdminPanelComponent } from './helperсomponents/admin-panel/admin-panel
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    StarRatingModule.forRoot(),
     SDKBrowserModule.forRoot(),
     RouterModule.forRoot([
       {

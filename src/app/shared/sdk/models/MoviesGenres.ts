@@ -6,7 +6,7 @@ import {
 
 declare var Object: any;
 export interface MoviesGenresInterface {
-  "MovieGenreId": number;
+  "MovieGenreId"?: number;
   "MovieId": number;
   "GenreId": number;
   movies?: Movies;

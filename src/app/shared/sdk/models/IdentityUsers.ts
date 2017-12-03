@@ -6,7 +6,7 @@ import {
 
 declare var Object: any;
 export interface IdentityUsersInterface {
-  "UserId": number;
+  "UserId"?: number;
   "Email": string;
   "UserName": string;
   "UserPassword": string;

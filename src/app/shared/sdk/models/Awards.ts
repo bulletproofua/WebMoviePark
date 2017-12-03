@@ -6,7 +6,7 @@ import {
 
 declare var Object: any;
 export interface AwardsInterface {
-  "AwardId": number;
+  "AwardId"?: number;
   "Title": string;
   "AwardTypeId": number;
   "AwardDate": Date;

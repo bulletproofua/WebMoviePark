@@ -2,7 +2,7 @@
 
 declare var Object: any;
 export interface StaffInterface {
-  "StaffId": number;
+  "StaffId"?: number;
   "StaffType": string;
 }
 

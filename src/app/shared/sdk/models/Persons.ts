@@ -9,7 +9,7 @@ import {
 
 declare var Object: any;
 export interface PersonsInterface {
-  "PersonId": number;
+  "PersonId"?: number;
   "FirstName": string;
   "LastName": string;
   "Birthday"?: Date;

@@ -5,7 +5,7 @@ import {
 
 declare var Object: any;
 export interface PhotosTypesInterface {
-  "PhotoTypeId": number;
+  "PhotoTypeId"?: number;
   "PhotoType": string;
   photos?: Photos;
 }

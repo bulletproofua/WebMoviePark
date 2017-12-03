@@ -5,7 +5,7 @@ import {
 
 declare var Object: any;
 export interface GenresInterface {
-  "GenreId": number;
+  "GenreId"?: number;
   "GenreType": string;
   movies?: Movies[];
 }

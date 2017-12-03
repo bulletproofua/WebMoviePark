@@ -7,7 +7,7 @@ import {
 
 declare var Object: any;
 export interface UsersInterface {
-  "UserId": number;
+  "UserId"?: number;
   "Age"?: number;
   "Sex"?: string;
   "PhotoId"?: string;

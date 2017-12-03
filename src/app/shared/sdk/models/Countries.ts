@@ -6,7 +6,7 @@ import {
 
 declare var Object: any;
 export interface CountriesInterface {
-  "CountryId": number;
+  "CountryId"?: number;
   "CountryName": string;
   movies?: Movies[];
   persons?: Persons;

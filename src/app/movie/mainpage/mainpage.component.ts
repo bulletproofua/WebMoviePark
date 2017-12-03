@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { Movies, FireLoopRef } from '../../shared/sdk/models';
 import { RealTime } from '../../shared/sdk/services';
+import { LoopBackAuth } from '../../shared/sdk/index';
 
 @Component({
   selector: 'app-mainpage',
@@ -19,8 +20,8 @@ export class MainpageComponent implements OnInit {
   // options = {  
 
   // };
-
-  constructor(private realTime: RealTime, private router: Router) { }
+  // private filter: object =  {order: 'MovieId ASC' };
+  constructor(private realTime: RealTime, private router: Router, private LoopBackAuth: LoopBackAuth) { }
 
   ngOnInit() {
     this.realTime.onReady().subscribe(

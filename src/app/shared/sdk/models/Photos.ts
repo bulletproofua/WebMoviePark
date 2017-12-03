@@ -6,7 +6,7 @@ import {
 
 declare var Object: any;
 export interface PhotosInterface {
-  "PhotoId": number;
+  "PhotoId"?: number;
   "Link": string;
   "PhotoTypeId": number;
   persons?: Persons[];

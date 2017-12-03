@@ -6,7 +6,7 @@ import {
 
 declare var Object: any;
 export interface UsersMoviesInterface {
-  "UserMovieId": number;
+  "UserMovieId"?: number;
   "UserId": number;
   "MovieId": number;
   "Rating": number;

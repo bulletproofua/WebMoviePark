@@ -6,7 +6,7 @@ import {
 
 declare var Object: any;
 export interface ExternalServicesInterface {
-  "ExternalServiceId": number;
+  "ExternalServiceId"?: number;
   "ServiceName": string;
   "Link": string;
   "PhotoId"?: number;

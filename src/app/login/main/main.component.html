@@ -1,10 +1,8 @@
-<div class="col-md-10 col-md-offset-1  login-main">
-  <div class="col-lg-offset-3 col-lg-6 select-bar">
+<div class="col-md-10 col-md-offset-1 col-lg-6 col-lg-offset-3  login-main">
     <div class="select-btn">
-      <button (click)="onSingup()" type="button" class="btn btn-success"> Singup</button>
-      <button (click)="onSingin()" type="button" class="btn btn-success"> Singin</button>
+      <button [ngClass] = "{ 'selected': singup }" (click)="onSingup()" type="button" class="btn btn-success"> Singup</button>
+      <button [ngClass] = "{ 'selected': singin }"(click)="onSingin()" type="button" class="btn btn-success"> Singin</button>
     </div>
     <app-singin *ngIf="singin"></app-singin>
     <app-singup *ngIf="singup"></app-singup>
-  </div>  
 </div>

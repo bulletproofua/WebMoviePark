@@ -5,7 +5,7 @@ import {
 
 declare var Object: any;
 export interface NominationTypesInterface {
-  "NominationTypeId": number;
+  "NominationTypeId"?: number;
   "NominationType": string;
   awards?: Awards[];
 }

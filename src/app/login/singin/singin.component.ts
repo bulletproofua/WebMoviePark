@@ -28,6 +28,7 @@ export class SinginComponent {
       confirmPassword: new FormControl('', [
           Validators.required,
           Validators.minLength(3)
+        //   TODO запилити кастомну валідацію
       ])
   });
   

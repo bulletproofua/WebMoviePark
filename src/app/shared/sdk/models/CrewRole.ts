@@ -5,7 +5,7 @@ import {
 
 declare var Object: any;
 export interface CrewRoleInterface {
-  "CrewRoleId": number;
+  "CrewRoleId"?: number;
   "CrewRoleName": number;
   moviesPersons?: MoviesPersons;
 }

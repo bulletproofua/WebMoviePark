@@ -6,7 +6,7 @@ import {
 
 declare var Object: any;
 export interface PersonsPhotosInterface {
-  "PersonPhotoId": number;
+  "PersonPhotoId"?: number;
   "PersonId": number;
   "PhotoId": number;
   persons?: Persons;

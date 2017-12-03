@@ -47,7 +47,7 @@ img {
 
 div.filmName {
     text-align: center;
-    padding: 10px 10px;
+    padding: 0px 10px;
 }
 
 .poster {
@@ -74,5 +74,7 @@ div.filmName {
 }
 
 .rating {
-    background-color: #3E3ED3;
+    // background-color: rgb(156, 156, 156);
+    margin: 2px;
+    height: 23px;
 }

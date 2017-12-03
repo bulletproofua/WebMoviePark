@@ -6,7 +6,7 @@ import {
 
 declare var Object: any;
 export interface ExternalServicesRatingsInterface {
-  "ExternalServiceRatingId": number;
+  "ExternalServiceRatingId"?: number;
   "ExternalServiceId": number;
   "MovieId": number;
   "Rating": number;

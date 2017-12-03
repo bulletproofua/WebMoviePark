@@ -6,7 +6,7 @@ import {
 
 declare var Object: any;
 export interface RolesInterface {
-  "RoleId": number;
+  "RoleId"?: number;
   "MovieId": number;
   "PersonId": number;
   "RoleName": string;

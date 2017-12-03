@@ -1,5 +1,6 @@
 /* tslint:disable */
 import {
+  UsersMovies,
   ExternalServices,
   Genres,
   Countries,
@@ -12,7 +13,7 @@ import {
 
 declare var Object: any;
 export interface MoviesInterface {
-  "MovieId": number;
+  "MovieId"?: number;
   "Title": string;
   "Description"?: string;
   "Length"?: number;
@@ -23,6 +24,7 @@ export interface MoviesInterface {
   "Rating": number;
   "TotalViews": number;
   "TrailerLink"?: string;
+  UsersMovies?: UsersMovies[];
   externalServices?: ExternalServices[];
   genres?: Genres[];
   countries?: Countries[];
@@ -45,6 +47,7 @@ export class Movies implements MoviesInterface {
   "Rating": number;
   "TotalViews": number;
   "TrailerLink": string;
+  UsersMovies: UsersMovies[];
   externalServices: ExternalServices[];
   genres: Genres[];
   countries: Countries[];
@@ -131,6 +134,11 @@ export class Movies implements MoviesInterface {
         },
       },
       relations: {
+        UsersMovies: {
+          name: 'UsersMovies',
+          type: 'UsersMovies[]',
+          model: 'UsersMovies'
+        },
         externalServices: {
           name: 'externalServices',
           type: 'ExternalServices[]',

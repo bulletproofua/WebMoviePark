@@ -8,19 +8,36 @@
       <div class="about">
         <!-- <p class="title"> {{ movie.Description }}</p> -->
         <p>
-            <span> KP : 8.2 <i>.</i></span>
+            <span>KP : 8.2 <i>.</i></span>
         </p>
         <p>
           <span>IMB : 8.0  <i>.</i></span>   
         </p>
         <p>
-          <span>DICH : 2.0  <i>.</i></span>
+          <span>Metacritic : 2.0  <i>.</i></span>
         </p>       
       </div>
     </div>
-    <!-- <div class="rating">
-      <p>rating</p>
-    </div> -->
+    <div class="rating">
+      <p>{{movie.UsersMovies[0].Rating}}</p>
+      <star-rating-comp 
+        [id]="movie.MovieId"
+        [rating]="movie.UsersMovies[0].Rating"
+        [starType]="'svg'"
+        [step]="0.5"
+        [numOfStars]="10" 
+        [size]="'medium'"
+        [showHalfStars]="true"
+        [speed]="'slow'"
+        [direction]="'ltr'"
+        [hoverEnabled]="true"
+        [labelPosition]="'right'"
+        [staticColor]="'positive'"
+
+        (onClick)="onClick($event, movie.MovieId)"
+        (onRatingChange)="onRatingChange($event, movie.MovieId)"
+      ></star-rating-comp>
+    </div>
     <div class="filmName">
       <p> {{ movie.Title }}</p>
     </div>  
