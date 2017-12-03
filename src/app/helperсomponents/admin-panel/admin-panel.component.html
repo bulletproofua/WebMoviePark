@@ -21,14 +21,17 @@
   </div>
   <div>
     <p>RatingAgeLimit</p>
-    <input [(ngModel)]="RatingAgeLimit" type="text">
+    <select [(ngModel)]="RatingAgeLimit">
+      <option>PG-13</option>
+      <option>R</option>
+    </select>
   </div>
   <div>
     <p>Budget</p>
     <input class="budget" [(ngModel)]="Budget" type="text">
     <select [(ngModel)]="BudgetOption">
-      <option >m</option>
-      <option >k</option>
+      <option>m</option>
+      <option>k</option>
     </select>
   </div>
   <div>

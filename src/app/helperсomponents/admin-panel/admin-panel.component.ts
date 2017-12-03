@@ -19,7 +19,7 @@ export class AdminPanelComponent implements OnInit {
   private Length: string = null;
   private Slogan: string = null;
   private PremiereDate: string = null; 
-  private RatingAgeLimit: string = null;
+  private RatingAgeLimit: string = "PG-13";
   private Budget: string = null;
   private BudgetOption: string = "m";
   private TrailerLink: string = null;
@@ -87,7 +87,7 @@ export class AdminPanelComponent implements OnInit {
     this.Length                   = null;
     this.Slogan                   = null;
     this.PremiereDate             = null;
-    this.RatingAgeLimit           = null;
+    this.RatingAgeLimit           = "PG-13";
     this.Budget                   = null;
     this.BudgetOption             = "m";
     this.TrailerLink              = null;
