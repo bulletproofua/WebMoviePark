@@ -74,7 +74,7 @@ export class MovieListComponent implements OnChanges {
                         console.log('instances[0].UsersMovies[0] --->', instances[0].UsersMovies[0].Rating)
                         
             
-                        //   instances.length = 41;
+                        //   instances.length = 14;
                         this.data = instances;
                         this.data.forEach( val => {
                             if( val.UsersMovies === undefined || val.UsersMovies == 0 ) {
@@ -122,8 +122,7 @@ export class MovieListComponent implements OnChanges {
     }
 
     onRatingChange($event: OnRatingChangeEven, MovieId: any): void {
-        console.log('single onRatingChange rating: ', $event.rating);
-        
+        // console.log('single onRatingChange rating: ', $event.rating);   
     }
     
     onClick($event: OnClickEvent, MovieId: any): void {

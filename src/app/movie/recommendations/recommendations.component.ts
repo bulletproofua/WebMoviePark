@@ -60,6 +60,15 @@ export class RecommendationsComponent implements OnInit {
 
     this.serviceRef = this.realTime.FireLoop.ref<Movies>(Movies);
     console.log('this.serviceRef', this.serviceRef)
+    this.filter = { 
+      include:{ 
+          relation: "UsersMovies", 
+              scope:{
+                  where:{
+                      "UserId": this.LoopBackAuth.getCurrentUserId()
+                  }
+              } 
+          }, order: 'MovieId ASC' };
   }
 
   ngOnDestroy() {

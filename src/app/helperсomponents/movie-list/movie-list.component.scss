@@ -1,4 +1,4 @@
-$aboutBackground: rgb(99, 99, 99);
+$aboutBackground: rgba(51, 139, 255, 0.856);
 
 p {
     margin: 0px;
@@ -9,8 +9,8 @@ p {
 }
 
 img {
-    max-width: 100%;
-    height: auto;
+    width: 100%;
+    height: 400px;
 }
 
 .flex-container {
@@ -34,7 +34,8 @@ img {
     padding: 0px;
     width: 270px;
     height: 450px;
-    margin: 5px;
+    margin: 5px 0px;
+    
     background: #C7C7C7;
 }
 
@@ -46,14 +47,18 @@ img {
 }
 
 div.filmName {
+    height: 20px;
     text-align: center;
     padding: 0px 10px;
+    background: rgb(51, 139, 255);
+    color: white;
+    // border-top: solid 1px rgba(255, 255, 255, 0.507);
 }
 
 .poster {
     position: relative;
-
 }
+
 .about {
     position: absolute;
     bottom: 0px;

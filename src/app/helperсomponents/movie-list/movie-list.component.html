@@ -18,6 +18,9 @@
         </p>       
       </div>
     </div>
+    <div class="filmName">
+      <p> {{ movie.Title }}</p>
+    </div>  
     <div class="rating">
       <p>{{movie.UsersMovies[0].Rating}}</p>
       <star-rating-comp 
@@ -38,9 +41,6 @@
         (onRatingChange)="onRatingChange($event, movie.MovieId)"
       ></star-rating-comp>
     </div>
-    <div class="filmName">
-      <p> {{ movie.Title }}</p>
-    </div>  
   </div>
 </div>
 
