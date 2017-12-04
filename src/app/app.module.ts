@@ -50,9 +50,18 @@ import { StarRatingModule } from 'angular-star-rating';
         path: 'Movies',
         component: MainpageComponent
       },
+      // {
+      //   path: 'Movies/:movieId'
+      //    component: MainpageComponent
+      // },
       {
         path: 'Recommendations',
         component: RecommendationsComponent
+      },
+      {
+        path: '',
+        redirectTo: 'Movies',
+        pathMatch: 'full'
       },
       {
         path: '**', 

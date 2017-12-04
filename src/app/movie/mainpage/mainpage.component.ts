@@ -24,15 +24,14 @@ export class MainpageComponent implements OnInit {
   constructor(private realTime: RealTime, private router: Router, private LoopBackAuth: LoopBackAuth) { }
 
   ngOnInit() {
-    this.realTime.onReady().subscribe(
-      (res) => {
-        console.log('this.serviceRef', this.serviceRef)
-        this.serviceRef = this.realTime.FireLoop.ref<Movies>(Movies);
-      //  this.setup() 
-      },
-      (err:any) => {
-        console.log('err', err)
-      })
+    this.serviceRef = this.realTime.FireLoop.ref<Movies>(Movies);
+
+    let userData = this.LoopBackAuth.getCurrentUserData();
+    
+    if( userData === null || userData === undefined ){            
+        console.log("    unauthorized user ! -> to login")
+      this.router.navigate(['/login']);
+    }
   }
 
   setup(): void {

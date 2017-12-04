@@ -33,18 +33,26 @@ export class RecommendationsComponent implements OnInit {
      private router: Router, public CF: CollaborativeFilteringApi, public AprioriAlgorithmApi: AprioriAlgorithmApi, public UsersMoviesApi: UsersMoviesApi)  { }
 
   ngOnInit() {
-    // this.LoopBackAuth
-      this.realTime.onReady().subscribe(
-      (res) => {
-        console.log('this.serviceRef', this.serviceRef)
-        this.serviceRef = this.realTime.FireLoop.ref<Movies>(Movies);
 
+    if( this.realTime.connection.isConnected() == true ){
+      this.setup();
+    }
 
-      //  this.setup()
-      },
-      (err:any) => {
-        console.log('err', err)
-      })
+    this.serviceRef = this.realTime.FireLoop.ref<Movies>(Movies);
+
+    let userData = this.LoopBackAuth.getCurrentUserData();
+
+    this.realTime.IO.on("connect").subscribe(
+      (res:any) => {
+        console.log('chat || realTime -> connect')
+        this.setup();
+      }
+    );
+    
+    if( userData === null || userData === undefined ){            
+        console.log("    unauthorized user ! -> to login")
+      this.router.navigate(['/login']);
+    }
   }
 
   setup(): void {
@@ -53,6 +61,7 @@ export class RecommendationsComponent implements OnInit {
     this.serviceRef = this.realTime.FireLoop.ref<Movies>(Movies);
     console.log('this.serviceRef', this.serviceRef)
   }
+
   ngOnDestroy() {
     if (this.serviceRef) {
         this.serviceRef.dispose();
