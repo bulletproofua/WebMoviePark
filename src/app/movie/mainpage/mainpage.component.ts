@@ -61,14 +61,25 @@ export class MainpageComponent implements OnInit {
     this.serviceRef = this.realTime.FireLoop.ref<Movies>(Movies);
 
     this.filter = { 
-    include:{ 
-        relation: "UsersMovies",
+    include:[
+      { 
+        relation: "UsersMovies", 
             scope:{
                 where:{
                     "UserId": this.LoopBackAuth.getCurrentUserId()
                 }
-            } 
-        }, order: 'MovieId ASC' };
+            }
+      }
+      // ,
+      // {
+      //   relation: "externalServices", 
+      //     // scope:{
+      //     //   where:{
+      //     //     "MovieId": this.LoopBackAuth.getCurrentUserId()
+      //     //   }
+      //     // }
+      // }
+    ], order: 'MovieId DESC' };
         
     console.log(' MAIN PAGE ->  serviceRef', this.serviceRef)
   }

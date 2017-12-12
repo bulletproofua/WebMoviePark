@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Movies, FireLoopRef } from '../../shared/sdk/models';
 import { Subscription } from 'rxjs/Subscription';
 import { OnChanges, SimpleChanges } from '@angular/core/src/metadata/lifecycle_hooks';
-import { UserApi, MoviesApi, UsersMoviesApi, LoopBackAuth } from '../../shared/sdk/index';
+import { UserApi, MoviesApi, UsersMoviesApi, LoopBackAuth, ExternalServicesApi, ExternalServicesRatingsApi } from '../../shared/sdk/index';
 import * as _ from 'lodash';
 import {
     OnClickEvent,
@@ -35,7 +35,8 @@ export class MovieListComponent implements OnChanges {
         private router : Router, 
         private MoviesApi: MoviesApi, 
         private UsersMoviesApi: UsersMoviesApi,
-        private LoopBackAuth: LoopBackAuth
+        private LoopBackAuth: LoopBackAuth,
+        private ExternalServicesRatingsApi:ExternalServicesRatingsApi
     ) { }
     
     @Input() filter: object;
@@ -53,10 +54,33 @@ export class MovieListComponent implements OnChanges {
         if(  this.filter ) { 
             this.serviceSub = this._service.on('change', this.filter ).subscribe(
                 (instances: any) => {
+                    // console.log('instances', instances)
                     if (instances instanceof Array) {                              
                         //   instances.length = 14;
                         this.data = instances;
-                        this.data.forEach( (val, index) => {                           
+                        this.data.forEach( (val, index) => {                             
+                            this.ExternalServicesRatingsApi.find( { where: { "MovieId" :val.MovieId }}).subscribe(
+                                res => { 
+                                    res.forEach( (elem: any) => {
+                                        if(elem && elem.Rating ){
+                                            switch (elem.ExternalServiceId) {
+                                                case 1:
+                                                    val.IMDb = elem.Rating;
+                                                    break;
+                                                case 2:
+                                                    val.Metacritic = elem.Rating;
+                                                    break;
+                                            
+                                                default:
+                                                    val.IMDb = "-";
+                                                    val.Metacritic = "-";
+                                                    break;
+                                            }
+                                        }
+                                    })                                   
+                                }
+                            )
+                            
                             if( val.UsersMovies[0] && this.filterMode ){
                                 delete this.data[index];
                             } else {
