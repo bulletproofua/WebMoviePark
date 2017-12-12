@@ -66,16 +66,24 @@ export class MovieListComponent implements OnChanges {
                                             switch (elem.ExternalServiceId) {
                                                 case 1:
                                                     val.IMDb = elem.Rating;
+                                                    if(val.Metacritic === undefined ){
+                                                        val.Metacritic = " - "
+                                                    }
                                                     break;
                                                 case 2:
                                                     val.Metacritic = elem.Rating;
-                                                    break;
-                                            
+                                                    if(val.IMDb === undefined ){
+                                                        val.IMDb = " - "
+                                                    }
+                                                    break;                                            
                                                 default:
-                                                    val.IMDb = "-";
-                                                    val.Metacritic = "-";
+                                                    val.IMDb = " - ";
+                                                    val.Metacritic = " - ";
                                                     break;
                                             }
+                                        } else {
+                                            val.IMDb = " - ";
+                                            val.Metacritic = " - ";
                                         }
                                     })                                   
                                 }
@@ -98,6 +106,7 @@ export class MovieListComponent implements OnChanges {
                         })
 
                         this.data = _.without( this.data , undefined) 
+                        console.log('data', this.data)
                     } else {
                         console.log(" movie-list.component errors 1  : ", instances.error);
                     }
