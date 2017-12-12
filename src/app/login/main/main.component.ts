@@ -7,8 +7,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class MainComponent implements OnInit {
-  private singup :any = true;
-  private singin :any = false;
+  private singup :any = false;
+  private singin :any = true;
   constructor() { }
 
   ngOnInit() {

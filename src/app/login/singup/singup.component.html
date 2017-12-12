@@ -1,46 +1,60 @@
+
+
+
 <div class="wrapper wrapper-center">
-  <div class="row">
-    <div class="col-sm-12 col-md-12 ">
-        <div class="ibox-content ibox-border">
-          <form class="form-horizontal" [formGroup]='form' (ngSubmit)="onSubmit()" >
-            <div class="form-group">
-              <label class="col-lg-2 control-label">Email</label>
-                <div class="col-lg-10">
-                  <input       
-                    formControlName='email'
-                    id='email' 
+    <div class="row">
+      <div class="col-sm-12 col-md-12 ">
+          <div class="ibox-content ibox-border">
+            <form class="form-horizontal" [formGroup]='form' (ngSubmit)="onSubmit()" >
+              <div class="form-group">
+                <label class="col-lg-2 control-label">Email</label>
+                  <div class="col-lg-10">
+                    <input       
+                      formControlName='email'
+                      id='email' 
+                      type="text"
+                      placeholder="email" 
+                      class="form-control">
+                  </div>
+              </div>
+              <div class="form-group"><label class="col-lg-2 control-label">Password</label>
+                  <div class="col-lg-10">
+                    <input  
+                    class="form-control"
+                    formControlName='password'
+                    id='password' 
                     type="text"
-                    placeholder="email" 
+                    placeholder="Password" 
                     class="form-control">
-                </div>
-            </div>
-            <div class="form-group"><label class="col-lg-2 control-label">Password</label>
+                  </div>
+              </div>
+              <div class="form-group"><label class="col-lg-2 control-label">Password</label>
                 <div class="col-lg-10">
                   <input  
                   class="form-control"
-                  formControlName='password'
-                  id='password' 
+                  formControlName='confirmPassword'
+                  id='confirmPassword' 
                   type="text"
-                  placeholder="Password" 
+                  placeholder="Confirm password" 
                   class="form-control">
                 </div>
             </div>
-            <div *ngIf="email.touched && email.invalid || password.touched && password.invalid" class="col-lg-offset-3 col-lg-6 alert alert-danger">
-                <div *ngIf="email.errors.required">email is required</div>
-                <div *ngIf="email.errors.minLength">email should be minimum {{ email.errors.minLength.requiredLength }} characters</div>
-                <div *ngIf="password.errors.required">Password is required</div>
-                <div *ngIf="password.errors.minLength">Password should be minimum {{ password.errors.minLength.requiredLength }} characters</div>
-            </div>  
-            <div [hidden]="email.a || password.a" *ngIf="form.errors" class="col-lg-offset-3 col-lg-6 alert alert-danger">
-               <div *ngIf="form.errors"> {{ form.errors.error }}</div>
-            </div>
-            <div class="form-group">
-                <div class="col-lg-offset-2 col-lg-10">
-                    <button [disabled]="this.email.invalid || this.password.invalid" class="btn btn-sm btn-white" type="submit">Sign in</button>
-                </div>
-            </div>
-          </form>
-        </div>
-    </div> 
-  </div>
-</div> 
+              <div *ngIf="email.touched && email.invalid || password.touched && password.invalid" class="col-lg-offset-3 col-lg-6 alert alert-danger">
+                  <div *ngIf="email.errors.required">email is required</div>
+                  <div *ngIf="email.errors.minLength">email should be minimum {{ email.errors.minLength.requiredLength }} characters</div>
+                  <div *ngIf="password.errors.required">Password is required</div>
+                  <div *ngIf="password.errors.minLength">Password should be minimum {{ password.errors.minLength.requiredLength }} characters</div>
+              </div>  
+              <div [hidden]="email.a || password.a" *ngIf="form.errors" class="col-lg-offset-3 col-lg-6 alert alert-danger">
+                 <div *ngIf="form.errors"> {{ form.errors.error }}</div>
+              </div>
+              <div class="form-group">
+                  <div class="col-lg-offset-2 col-lg-10">
+                      <button [disabled]="this.email.invalid || this.password.invalid" class="btn btn-sm btn-white" type="submit">Sign up</button>
+                  </div>
+              </div>
+            </form>
+          </div>
+      </div> 
+    </div>
+  </div> 

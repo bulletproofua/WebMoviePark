@@ -21,16 +21,18 @@ export class RecommendationsComponent implements OnInit {
   private filmIdArr: any[] = [];
   private UserMovieIdsArr: any[] = [];
   private filter: object;
-  serviceRef: FireLoopRef<Movies>;
-  // fields = ["id", "createdAt", "updatedAt"];
+  private serviceRef: FireLoopRef<Movies>;
 
-  // options = {  
+  private CFstatus: boolean = false;
+  private AprioriStatus: boolean = false;
+  private AACFstatus: boolean = false;
 
-  // };
-
-  constructor(
-     private LoopBackAuth: LoopBackAuth, private realTime: RealTime, 
-     private router: Router, public CF: CollaborativeFilteringApi, public AprioriAlgorithmApi: AprioriAlgorithmApi, public UsersMoviesApi: UsersMoviesApi)  { }
+  constructor (
+    private LoopBackAuth: LoopBackAuth, private realTime: RealTime, 
+    private router: Router, public CF: CollaborativeFilteringApi,
+    public AprioriAlgorithmApi: AprioriAlgorithmApi,
+    public UsersMoviesApi: UsersMoviesApi
+  ) { }
 
   ngOnInit() {
 
@@ -38,7 +40,6 @@ export class RecommendationsComponent implements OnInit {
       this.setup();
     }
 
-    this.serviceRef = this.realTime.FireLoop.ref<Movies>(Movies);
 
     let userData = this.LoopBackAuth.getCurrentUserData();
 
@@ -59,16 +60,7 @@ export class RecommendationsComponent implements OnInit {
     this.ngOnDestroy();
 
     this.serviceRef = this.realTime.FireLoop.ref<Movies>(Movies);
-    console.log('this.serviceRef', this.serviceRef)
-    this.filter = { 
-      include:{ 
-          relation: "UsersMovies", 
-              scope:{
-                  where:{
-                      "UserId": this.LoopBackAuth.getCurrentUserId()
-                  }
-              } 
-          }, order: 'MovieId ASC' };
+    this.onCollaborativefiltering();
   }
 
   ngOnDestroy() {
@@ -82,14 +74,34 @@ export class RecommendationsComponent implements OnInit {
   }
 
   onCollaborativefiltering(){
+
+    console.log('onCollaborativefiltering ---->>>')
+
+    this.CFstatus = true; 
+    this.AprioriStatus = false;
+    this.AACFstatus = false;  
+
     this.CF.Collaborativefiltering(this.LoopBackAuth.getCurrentUserId()).subscribe(
       (res) => {
         this.filmIdArr = [];
         res.forEach(element => {
           this.filmIdArr.push(element[0]);
         });
+        console.log('onCollaborativefiltering filmIdArr', this.filmIdArr)
+
         this.filter = { 
-          where: { "userId": this.LoopBackAuth.getCurrentUserId(), "MovieId": {inq: this.filmIdArr } }, order: 'MovieId ASC',
+          include:{ 
+            relation: "UsersMovies",
+                    scope:{
+                where:{
+                    "UserId": this.LoopBackAuth.getCurrentUserId()
+                }
+            }
+          },
+          where: { 
+            "userId": this.LoopBackAuth.getCurrentUserId(), 
+            "MovieId": {inq: this.filmIdArr } 
+          }, order: 'MovieId ASC',
         };
       },
       (err:any) => {
@@ -99,8 +111,12 @@ export class RecommendationsComponent implements OnInit {
   }
 
   onApriori(){
+    console.log('onApriori ---->>>')
 
-    console.log("---------------------------------------")
+    this.CFstatus = false; 
+    this.AprioriStatus = true;
+    this.AACFstatus = false;
+
     this.UsersMoviesApi.find({where:{ "UserId": this.LoopBackAuth.getCurrentUserId()}}).subscribe(
       (res:any) => {
         this.UserMovieIdsArr = [];
@@ -112,8 +128,6 @@ export class RecommendationsComponent implements OnInit {
         this.AprioriAlgorithmApi.AprioriAlgorithm(this.LoopBackAuth.getCurrentUserId(), 3, 0.6).subscribe(
           (res:any) => {
             let recomendationArr: any[] = [];
-
-            console.log('res', res)
             res.forEach( element => {
               element.from.forEach( rule => {
                 this.UserMovieIdsArr.forEach( movie => {
@@ -129,15 +143,25 @@ export class RecommendationsComponent implements OnInit {
 
             recomendationArr = _.flattenDeep(recomendationArr);
             recomendationArr = _.uniq(recomendationArr);
-
-            this.filter = { 
-              where: { "userId": this.LoopBackAuth.getCurrentUserId(), "MovieId": {inq: recomendationArr } }, order: 'MovieId ASC',
-            };
+            console.log('recomendationArr', recomendationArr)
             
+              this.filter = { 
+                include:{ 
+                  relation: "UsersMovies",
+                          scope:{
+                      where:{
+                          "UserId": this.LoopBackAuth.getCurrentUserId()
+                      }
+                  }
+                },
+                where: { 
+                  "userId": this.LoopBackAuth.getCurrentUserId(), 
+                  "MovieId": {inq: recomendationArr } 
+                }, order: 'MovieId ASC',
+              };          
           },
           (err:any) => {
-            console.log('err', err)
-    
+            console.log('err', err)    
           }
         )
       },
@@ -147,6 +171,13 @@ export class RecommendationsComponent implements OnInit {
   }
 
   onApriorialgorithmAndCollaborativefiltering(){
+
+    console.log('onApriorialgorithmAndCollaborativefiltering ---->>>')
+
+    this.CFstatus = false; 
+    this.AprioriStatus = false;
+    this.AACFstatus = true;
+
     this.UsersMoviesApi.find({where:{ "UserId": this.LoopBackAuth.getCurrentUserId()}}).subscribe(
       (res:any) => {
         this.UserMovieIdsArr = [];
@@ -167,17 +198,28 @@ export class RecommendationsComponent implements OnInit {
                     return ;
                   }
                 })
-
               })
             })
 
             recomendationArr = _.flattenDeep(recomendationArr);
             recomendationArr = _.uniq(recomendationArr);
+            console.log('recomendationArr', recomendationArr)
 
             this.filter = { 
-              where: { "userId": this.LoopBackAuth.getCurrentUserId(), "MovieId": {inq: recomendationArr } }, order: 'MovieId ASC',
-            };
-            
+              include:{ 
+                relation: "UsersMovies",
+                        scope:{
+                    where:{
+                        "UserId": this.LoopBackAuth.getCurrentUserId()
+                    }
+                }
+              },
+              where: { 
+                "userId": this.LoopBackAuth.getCurrentUserId(), 
+                "MovieId": {inq: recomendationArr } 
+              }, order: 'MovieId ASC',
+            };     
+
           },
           (err:any) => {
             console.log('err', err)    
@@ -188,5 +230,4 @@ export class RecommendationsComponent implements OnInit {
         console.log('err', err)
     });  
   }
-
 }

@@ -1,5 +1,5 @@
 <div class="list flex-container">
-  <div *ngIf="listIsClean == true" class="clear">
+  <div *ngIf="data && data.length == 0" class="clear">    
     <p>list Is clean</p>
   </div>
   <div *ngFor="let movie of data" class="movie flex-item">
@@ -22,20 +22,21 @@
       <p> {{ movie.Title }}</p>
     </div>  
     <div class="rating">
-      <p>{{movie.UsersMovies[0].Rating}}</p>
+      <!-- <p>{{movie.UsersMovies[0].Rating}}</p> -->
       <star-rating-comp 
         [id]="movie.MovieId"
-        [rating]="movie.UsersMovies[0].Rating"
+        [rating]="movie.UsersMovies[0].Rating/2"
         [starType]="'svg'"
-        [step]="0.5"
-        [numOfStars]="10" 
+        [step]="0.1"
+        [numOfStars]="5" 
         [size]="'medium'"
         [showHalfStars]="true"
         [speed]="'slow'"
         [direction]="'ltr'"
         [hoverEnabled]="true"
         [labelPosition]="'right'"
-        [staticColor]="'positive'"
+        [staticColor]="'ok'"
+        
 
         (onClick)="onClick($event, movie.MovieId)"
         (onRatingChange)="onRatingChange($event, movie.MovieId)"
@@ -43,19 +44,3 @@
     </div>
   </div>
 </div>
-
-
-
-<!-- 
-"MovieId": 1,
-"Title": "string",
-"Description": "string",
-"Length": 0,
-"Slogan": "string",
-"PremiereDate": "2017-10-01T00:00:00.000Z",
-"RatingAgeLimit": "string",
-"Budget": 0,
-"Rating": 0,
-"TotalViews": 0,
-"TrailerLink": "string" 
--->

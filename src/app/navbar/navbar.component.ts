@@ -11,18 +11,22 @@ import { UserApi } from '../shared/sdk/services';
 export class NavbarComponent implements OnInit, DoCheck {
 
   private isAuthorized: boolean = false;
+  private userName: string = "User";
   
   constructor(private LoopBackAuth: LoopBackAuth, private userApi: UserApi,  private router: Router) { }
   
   ngOnInit() {
+    this.userName = this.LoopBackAuth.getCurrentUserData().username;
+    console.log('userName', this.userName)
+    console.log('this.LoopBackAuth.getCurrentUserData()', this.LoopBackAuth.getCurrentUserData())
   }
+
 
   ngDoCheck() {
     if (this.LoopBackAuth.getAccessTokenId() == null || this.LoopBackAuth.getAccessTokenId() === undefined) {
       this.isAuthorized = false;
     } else {
       this.isAuthorized = true;
-      // console.log('this.isAuthorized',this.LoopBackAuth)
     }
   }
 
@@ -34,6 +38,10 @@ export class NavbarComponent implements OnInit, DoCheck {
     this.LoopBackAuth.clear();
     this.isAuthorized = false;
     this.router.navigate(['/login']);
+  }
+
+  onOpenProfile(){
+    console.log("onOpenProfile");
   }
 
 }

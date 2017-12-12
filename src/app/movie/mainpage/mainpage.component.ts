@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { Movies, FireLoopRef } from '../../shared/sdk/models';
 import { RealTime } from '../../shared/sdk/services';
-import { LoopBackAuth } from '../../shared/sdk/index';
+import { LoopBackAuth, MoviesApi } from '../../shared/sdk/index';
 
 @Component({
   selector: 'app-mainpage',
@@ -20,8 +20,8 @@ export class MainpageComponent implements OnInit {
   // options = {  
 
   // };
-  // private filter: object =  {order: 'MovieId ASC' };
-  constructor(private realTime: RealTime, private router: Router, private LoopBackAuth: LoopBackAuth) { }
+  private filter: object;
+  constructor(private MoviesApi:MoviesApi, private realTime: RealTime, private router: Router, private LoopBackAuth: LoopBackAuth) { }
 
   ngOnInit() {
     this.serviceRef = this.realTime.FireLoop.ref<Movies>(Movies);
@@ -31,15 +31,48 @@ export class MainpageComponent implements OnInit {
     if( userData === null || userData === undefined ){            
         console.log("    unauthorized user ! -> to login")
       this.router.navigate(['/login']);
+    } else {
+      this.setup();
     }
+
   }
 
   setup(): void {
+    console.log(' MAIN PAGE ___ setup --->')
     this.ngOnDestroy();
 
+    // this.MoviesApi.find({
+    //   include:{ relation: "photos",
+    //     scope:{
+    //         where:{
+    //             "MovieId": 1
+    //         }
+    //     } 
+    
+    // } 
+
+
+    // }).subscribe(
+    //   res => {
+    //     console.log('res', res)
+    //   }
+    // )
+
     this.serviceRef = this.realTime.FireLoop.ref<Movies>(Movies);
-    console.log('this.serviceRef', this.serviceRef)
+
+    this.filter = { 
+    include:{ 
+        relation: "UsersMovies",
+            scope:{
+                where:{
+                    "UserId": this.LoopBackAuth.getCurrentUserId()
+                }
+            } 
+        }, order: 'MovieId ASC' };
+        
+    console.log(' MAIN PAGE ->  serviceRef', this.serviceRef)
   }
+
   ngOnDestroy() {
     if (this.serviceRef) {
         this.serviceRef.dispose();
