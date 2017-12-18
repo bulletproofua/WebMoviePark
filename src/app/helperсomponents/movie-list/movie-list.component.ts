@@ -3,7 +3,7 @@ import { EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { Movies, FireLoopRef } from '../../shared/sdk/models';
 import { Subscription } from 'rxjs/Subscription';
-import { OnChanges, SimpleChanges } from '@angular/core/src/metadata/lifecycle_hooks';
+import { OnChanges, SimpleChanges, OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { UserApi, MoviesApi, UsersMoviesApi, LoopBackAuth, ExternalServicesApi, ExternalServicesRatingsApi } from '../../shared/sdk/index';
 import * as _ from 'lodash';
 import {
@@ -24,7 +24,7 @@ selector: 'app-movie-list',
 templateUrl: './movie-list.component.html',
 styleUrls: ['./movie-list.component.scss']
 })
-export class MovieListComponent implements OnChanges {
+export class MovieListComponent implements OnChanges, OnDestroy {
 
     private serviceSub: Subscription;
     private data: any[];
@@ -51,12 +51,17 @@ export class MovieListComponent implements OnChanges {
 
     setup(){
         this.ngOnDestroy();
-        if(  this.filter ) { 
+
+
+        if( this.filter ) { 
+            if( this.serviceSub ) {
+                this.serviceSub.unsubscribe();
+            }
             this.serviceSub = this._service.on('change', this.filter ).subscribe(
                 (instances: any) => {
                     // console.log('instances', instances)
                     if (instances instanceof Array) {                              
-                        //   instances.length = 14;
+                        //   instances.length = 50;
                         this.data = instances;
                         this.data.forEach( (val, index) => {                             
                             this.ExternalServicesRatingsApi.find( { where: { "MovieId" :val.MovieId }}).subscribe(
@@ -162,7 +167,7 @@ export class MovieListComponent implements OnChanges {
                         { 
                             "UserId": this.LoopBackAuth.getCurrentUserId(),
                             "MovieId": MovieId,
-                            "Rating": $event.rating * 2
+                            "Rating": $event.rating //* 2
                         }
                     ).subscribe(
                         res => {
@@ -174,7 +179,7 @@ export class MovieListComponent implements OnChanges {
                         "UsersMovies": "",
                         "UserId": this.LoopBackAuth.getCurrentUserId(),
                         "MovieId": MovieId,
-                        "Rating": $event.rating * 2
+                        "Rating": $event.rating //* 2
                     }).subscribe(
                         res => {
                             console.log('upsert res', res)    
@@ -184,7 +189,6 @@ export class MovieListComponent implements OnChanges {
             },
             err => {
                 console.log('err', err)
-
             }
         )
     }
@@ -192,11 +196,7 @@ export class MovieListComponent implements OnChanges {
     ngOnChanges(changes: SimpleChanges){
         if( changes.filter ){
             this.filter = changes.filter.currentValue;
-            console.log('filter', this.filter)
-
             this.setup();
-        }
-        
+        }        
     }
-
 }

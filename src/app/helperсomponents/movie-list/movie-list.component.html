@@ -22,13 +22,13 @@
       <p> {{ movie.Title }}</p>
     </div>  
     <div class="rating">
-      <!-- <p>{{movie.UsersMovies[0].Rating}}</p> -->
+      <p>{{movie.UsersMovies[0].Rating}}</p>
       <star-rating-comp 
         [id]="movie.MovieId"
-        [rating]="movie.UsersMovies[0].Rating/2"
+        [rating]="movie.UsersMovies[0].Rating"
         [starType]="'svg'"
         [step]="0.1"
-        [numOfStars]="5" 
+        [numOfStars]="10" 
         [size]="'medium'"
         [showHalfStars]="true"
         [speed]="'slow'"

@@ -7,13 +7,14 @@ import { Observable } from 'rxjs/Observable';
 import { Movies, FireLoopRef } from '../../shared/sdk/models';
 import { RealTime } from '../../shared/sdk/services';
 import { LoopBackAuth, MoviesApi } from '../../shared/sdk/index';
+import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   selector: 'app-mainpage',
   templateUrl: './mainpage.component.html',
   styleUrls: ['./mainpage.component.scss']
 })
-export class MainpageComponent implements OnInit {
+export class MainpageComponent implements OnInit, OnDestroy {
   serviceRef: FireLoopRef<Movies>;
   // fields = ["id", "createdAt", "updatedAt"];
 
