@@ -3,7 +3,7 @@ import { EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { Movies, FireLoopRef } from '../../shared/sdk/models';
 import { Subscription } from 'rxjs/Subscription';
-import { OnChanges, SimpleChanges, OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
+import { OnChanges, SimpleChanges, OnDestroy, OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { UserApi, MoviesApi, UsersMoviesApi, LoopBackAuth, ExternalServicesApi, ExternalServicesRatingsApi } from '../../shared/sdk/index';
 import * as _ from 'lodash';
 import {
@@ -24,7 +24,7 @@ selector: 'app-movie-list',
 templateUrl: './movie-list.component.html',
 styleUrls: ['./movie-list.component.scss']
 })
-export class MovieListComponent implements OnChanges, OnDestroy {
+export class MovieListComponent implements OnChanges, OnDestroy, OnInit {
 
     private serviceSub: Subscription;
     private data: any[];
@@ -39,21 +39,29 @@ export class MovieListComponent implements OnChanges, OnDestroy {
         private ExternalServicesRatingsApi:ExternalServicesRatingsApi
     ) { }
     
-    @Input() filter: object;
+    @Input() filter: any;
     @Input() filterMode: boolean;
     
     @Input() set service(ref: any) {
         if (ref) {
             this._service = ref;
-            this.setup();
+            // this.setup();
         }
     }
 
+    ngOnInit(){
+        this.filter.limit = 30;
+    }
+
     setup(){
+        console.log('   setup----->')
+        
         this.ngOnDestroy();
 
-
         if( this.filter ) { 
+            console.log('this.filter', this.filter)
+            
+            console.log('this.filter2 ', this.filter)
             if( this.serviceSub ) {
                 this.serviceSub.unsubscribe();
             }
@@ -61,7 +69,7 @@ export class MovieListComponent implements OnChanges, OnDestroy {
                 (instances: any) => {
                     // console.log('instances', instances)
                     if (instances instanceof Array) {                              
-                        //   instances.length = 50;
+                          instances.length = 20;
                         this.data = instances;
                         this.data.forEach( (val, index) => {                             
                             this.ExternalServicesRatingsApi.find( { where: { "MovieId" :val.MovieId }}).subscribe(
@@ -193,10 +201,27 @@ export class MovieListComponent implements OnChanges, OnDestroy {
         )
     }
 
+    onLoadMore(){
+        console.log('onLoadMore')
+        this.filter.limit += 20;
+        // console.log('this.filter', this.filter)
+        this.setup();
+
+        // this._service;
+        
+        // console.log("clll ", this.data)
+    }
+
     ngOnChanges(changes: SimpleChanges){
+        console.log('ngOnChanges')
+        console.log('changes', changes)
         if( changes.filter ){
             this.filter = changes.filter.currentValue;
             this.setup();
         }        
+    }
+
+    trackByFn(index: any, item: any) {
+        return index;
     }
 }

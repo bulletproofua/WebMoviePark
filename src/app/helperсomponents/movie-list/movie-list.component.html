@@ -2,7 +2,7 @@
   <div *ngIf="data && data.length == 0" class="clear">    
     <p>list Is clean</p>
   </div>
-  <div *ngFor="let movie of data" class="movie flex-item">
+  <div *ngFor="let movie of data; trackBy: trackByFn" class="movie flex-item">
     <div class="poster">
       <img src="assets/{{movie.Link}}" alt="{{movie.Title}}">
       <div class="about">
@@ -35,7 +35,7 @@
         [direction]="'ltr'"
         [hoverEnabled]="true"
         [labelPosition]="'right'"
-        [staticColor]="'ok'"
+        [staticColor]="'positive'"
         
 
         (onClick)="onClick($event, movie.MovieId)"
@@ -43,4 +43,8 @@
       ></star-rating-comp>
     </div>
   </div>
+
+</div>
+<div class="col-md-12 footer-btn">
+  <button (click)="onLoadMore()" class="btn btn-primary"> Load more </button>
 </div>
