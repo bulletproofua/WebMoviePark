@@ -45,12 +45,15 @@ export class MovieListComponent implements OnChanges, OnDestroy, OnInit {
     @Input() set service(ref: any) {
         if (ref) {
             this._service = ref;
+            console.log('   ----------> this._service', this._service)
             // this.setup();
         }
     }
-
+    
     ngOnInit(){
-        this.filter.limit = 30;
+        // if( this.filter ){
+            this.filter.limit = 24;
+        // }
     }
 
     setup(){
@@ -59,17 +62,18 @@ export class MovieListComponent implements OnChanges, OnDestroy, OnInit {
         this.ngOnDestroy();
 
         if( this.filter ) { 
-            console.log('this.filter', this.filter)
-            
-            console.log('this.filter2 ', this.filter)
-            if( this.serviceSub ) {
-                this.serviceSub.unsubscribe();
-            }
-            this.serviceSub = this._service.on('change', this.filter ).subscribe(
+            console.log('   --> this.filter', this.filter)
+
+            // if( this.serviceSub ) {
+            //     this.serviceSub.unsubscribe();
+            // }
+            console.log('this._service', this._service)
+            console.log('serviceSub', this.serviceSub)
+            this.serviceSub =  this.MoviesApi.find( this.filter).subscribe(        //this._service.on('change', this.filter ).subscribe(
                 (instances: any) => {
-                    // console.log('instances', instances)
+                    console.log('instances', instances)
                     if (instances instanceof Array) {                              
-                          instances.length = 20;
+                        //   instances.length = 20;
                         this.data = instances;
                         this.data.forEach( (val, index) => {                             
                             this.ExternalServicesRatingsApi.find( { where: { "MovieId" :val.MovieId }}).subscribe(
@@ -203,7 +207,7 @@ export class MovieListComponent implements OnChanges, OnDestroy, OnInit {
 
     onLoadMore(){
         console.log('onLoadMore')
-        this.filter.limit += 20;
+        this.filter.limit += 12;
         // console.log('this.filter', this.filter)
         this.setup();
 

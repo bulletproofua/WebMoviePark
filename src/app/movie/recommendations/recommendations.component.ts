@@ -119,14 +119,17 @@ export class RecommendationsComponent implements OnInit {
 
     this.UsersMoviesApi.find({where:{ "UserId": this.LoopBackAuth.getCurrentUserId()}}).subscribe(
       (res:any) => {
+        console.log('res', res)
         this.UserMovieIdsArr = [];
 
         res.forEach(element => {
           this.UserMovieIdsArr.push(element.MovieId)
         });
+        console.log(' onApriori res', res)
 
-        this.AprioriAlgorithmApi.AprioriAlgorithm(this.LoopBackAuth.getCurrentUserId(), 3, 0.6).subscribe(
+        this.AprioriAlgorithmApi.AprioriAlgorithm(this.LoopBackAuth.getCurrentUserId(), 4, 0.6).subscribe(
           (res:any) => {
+            console.log(' onApriori res 2 ', res)
             let recomendationArr: any[] = [];
             res.forEach( element => {
               element.from.forEach( rule => {
@@ -148,23 +151,24 @@ export class RecommendationsComponent implements OnInit {
               this.filter = { 
                 include:{ 
                   relation: "UsersMovies",
-                          scope:{
-                      where:{
-                          "UserId": this.LoopBackAuth.getCurrentUserId()
-                      }
+                  scope:{
+                    where:{
+                      "UserId": this.LoopBackAuth.getCurrentUserId()
+                    }
                   }
                 },
                 where: { 
                   "userId": this.LoopBackAuth.getCurrentUserId(), 
                   "MovieId": {inq: recomendationArr } 
-                }, order: 'MovieId ASC',
+                }, order: 'MovieId ASC'
               };          
-          },
+              console.log('onApriori filter', filter)
+            },
           (err:any) => {
             console.log('err', err)    
           }
         )
-      },
+      },    
       (err:any) => {
         console.log('err', err)
     });    
@@ -186,7 +190,7 @@ export class RecommendationsComponent implements OnInit {
           this.UserMovieIdsArr.push(element.MovieId)
         });
 
-        this.AprioriAlgorithmApi.ApriorialgorithmAndCollaborativefiltering(this.LoopBackAuth.getCurrentUserId(), 3, 0.6).subscribe(
+        this.AprioriAlgorithmApi.ApriorialgorithmAndCollaborativefiltering(this.LoopBackAuth.getCurrentUserId(), 4, 0.6).subscribe(
           (res:any) => {
             let recomendationArr: any[] = [];
             res.forEach( element => {

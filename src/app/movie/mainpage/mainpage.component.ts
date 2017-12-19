@@ -80,7 +80,7 @@ export class MainpageComponent implements OnInit, OnDestroy {
       //     //   }
       //     // }
       // }
-    ], order: 'MovieId DESC' };
+    ], order: 'MovieId DESC', limit: 24 };
         
     console.log(' MAIN PAGE ->  serviceRef', this.serviceRef)
   }
