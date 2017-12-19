@@ -193,18 +193,20 @@ export class RecommendationsComponent implements OnInit {
         this.AprioriAlgorithmApi.ApriorialgorithmAndCollaborativefiltering(this.LoopBackAuth.getCurrentUserId(), 4, 0.6).subscribe(
           (res:any) => {
             let recomendationArr: any[] = [];
-            res.forEach( element => {
-              element.from.forEach( rule => {
-                this.UserMovieIdsArr.forEach( movie => {
-                  if( rule == movie ){
-                    recomendationArr.push( element.to )
-                  } else {
-                    return ;
-                  }
+            if( res.length ) {
+              res.forEach( element => {
+                element.from.forEach( rule => {
+                  this.UserMovieIdsArr.forEach( movie => {
+                    if( rule == movie ){
+                      recomendationArr.push( element.to )
+                    } else {
+                      return ;
+                    }
+                  })
                 })
-              })
-            })
-
+              })              
+            }  
+            
             recomendationArr = _.flattenDeep(recomendationArr);
             recomendationArr = _.uniq(recomendationArr);
             console.log('recomendationArr', recomendationArr)
@@ -222,8 +224,8 @@ export class RecommendationsComponent implements OnInit {
                 "userId": this.LoopBackAuth.getCurrentUserId(), 
                 "MovieId": {inq: recomendationArr } 
               }, order: 'MovieId ASC',
-            };     
-
+            }; 
+            
           },
           (err:any) => {
             console.log('err', err)    
