@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MainpageComponent } from './movie/mainpage/mainpage.component';
+import { MoviepageComponent } from './movie/moviepage/moviepage.component';
 import { RecommendationsComponent } from './movie/recommendations/recommendations.component';
 import { RatingComponent } from './helperсomponents/rating/rating.component';
 import { MovieListComponent} from './helperсomponents/movie-list/movie-list.component';
@@ -24,6 +25,7 @@ import { StarRatingModule } from 'angular-star-rating';
     NavbarComponent,
     SingupComponent,
     MainpageComponent,
+    MoviepageComponent,
     RecommendationsComponent,
     RatingComponent,
     MovieListComponent,
@@ -50,10 +52,10 @@ import { StarRatingModule } from 'angular-star-rating';
         path: 'Movies',
         component: MainpageComponent
       },
-      // {
-      //   path: 'Movies/:movieId'
-      //    component: MainpageComponent
-      // },
+      {
+        path: 'Movie/:movieId',
+        component: MoviepageComponent
+      },
       {
         path: 'Recommendations',
         component: RecommendationsComponent

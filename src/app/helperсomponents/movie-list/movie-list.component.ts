@@ -142,12 +142,6 @@ export class MovieListComponent implements OnChanges, OnDestroy, OnInit {
 
     @Output() selected: EventEmitter<any> = new EventEmitter();
     
-
-    openMovie(context: any) {
-        // this.router.navigateByUrl('/movie/' + context.id);
-        this.selected.emit(context);
-    }
-
     ngOnDestroy() {
         if (this.serviceSub) {           
             this.serviceSub.unsubscribe();
@@ -203,6 +197,14 @@ export class MovieListComponent implements OnChanges, OnDestroy, OnInit {
                 console.log('err', err)
             }
         )
+    }
+
+    onOpenMovie( event:any ){
+        console.log("event ===> ", event );
+
+        this.router.navigateByUrl('/Movie/' + event.MovieId);
+        // this.selected.emit(context);
+        
     }
 
     onLoadMore(){
