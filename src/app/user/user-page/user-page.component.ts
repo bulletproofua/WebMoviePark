@@ -19,6 +19,8 @@ export class UserPageComponent implements OnInit {
   private AprioriStatus: boolean = false;
   private AACFstatus: boolean = false;
 
+  private User: any;
+
   constructor (
     private LoopBackAuth: LoopBackAuth, 
     private router: Router, 
@@ -27,6 +29,8 @@ export class UserPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.User = this.LoopBackAuth.getCurrentUserData();
+    console.log('this.User', this.User)
 
     this.filter = { 
       include:[
