@@ -18,6 +18,7 @@ import { MainComponent } from './login/main/main.component';
 import { AdminPanelComponent } from './helperсomponents/admin-panel/admin-panel.component';
 
 import { StarRatingModule } from 'angular-star-rating';
+import { UserPageComponent } from './user/user-page/user-page.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { StarRatingModule } from 'angular-star-rating';
     MovieListComponent,
     SinginComponent,
     MainComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    UserPageComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +61,10 @@ import { StarRatingModule } from 'angular-star-rating';
       {
         path: 'Recommendations',
         component: RecommendationsComponent
+      },
+      {
+        path: 'User',
+        component: UserPageComponent
       },
       {
         path: '',

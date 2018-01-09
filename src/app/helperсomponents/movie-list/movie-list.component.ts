@@ -41,6 +41,7 @@ export class MovieListComponent implements OnChanges, OnDestroy, OnInit {
     
     @Input() filter: any;
     @Input() filterMode: boolean;
+    @Input() userMode: boolean;
     
     @Input() set service(ref: any) {
         if (ref) {
@@ -109,16 +110,21 @@ export class MovieListComponent implements OnChanges, OnDestroy, OnInit {
                             if( val.UsersMovies[0] && this.filterMode ){
                                 delete this.data[index];
                             } else {
-                                val.UsersMovies.push({"Rating": 0});                                
-                                this.MoviesApi.getPhotos(val.MovieId).subscribe(
-                                    (res: any) => {
-                                        val.PhotoId = res[0].PhotoId;
-                                        val.Link = res[0].Link;
-                                    },
-                                    (err: any) => {
-                                        console.log('err', err)
-                                    }
-                                )                          
+                                if( this.userMode && val.UsersMovies.length == 0) {
+                                    // console.log(this.data[index])
+                                    delete this.data[index];
+                                } else {
+                                    val.UsersMovies.push({"Rating": 0});                                
+                                    this.MoviesApi.getPhotos(val.MovieId).subscribe(
+                                        (res: any) => {
+                                            val.PhotoId = res[0].PhotoId;
+                                            val.Link = res[0].Link;
+                                        },
+                                        (err: any) => {
+                                            console.log('err', err)
+                                        }
+                                    )                          
+                                }
                             }
                         })
 

@@ -1,0 +1,15 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="row">
+    <app-movie-list
+
+      [service]="serviceRef" 
+      [userMode]="true"
+      [filter]="filter"
+      (selected)="onSelect($event)">
+    </app-movie-list>
+  </div>
+</div>
+
+<!-- [fields]="fields" -->      
+<!-- [options]="options"  -->

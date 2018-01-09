@@ -49,6 +49,7 @@ export class NavbarComponent implements OnInit, DoCheck, OnDestroy {
 
   onOpenProfile(){
     console.log("onOpenProfile");
+    this.router.navigate(['/User']);
   }
 
 }
