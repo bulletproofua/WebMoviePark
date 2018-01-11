@@ -24,21 +24,21 @@ export class AppComponent {
       }
     )
 
-    this.realTime.IO.on("unauthorized").subscribe(
-      (res) => {
-        if( this.debugAppComponent ) console.log('app.copmonent | unauthorized | CurrentUserData ', this.LoopBackAuth.getCurrentUserData())
+    // this.realTime.IO.on("unauthorized").subscribe(
+    //   (res) => {
+    //     if( this.debugAppComponent ) console.log('app.copmonent | unauthorized | CurrentUserData ', this.LoopBackAuth.getCurrentUserData())
         
-        if( !this.isLoged() ){
-          if ( this.router.url !== "/login"){
-            console.log('  unauthorized user ! -> to singin')
-            this.router.navigate(['/login']);
-          }
-        }
-      },
-      (err) => {
-        console.log('err ----------> ', err)
-      }
-    )
+    //     if( !this.isLoged() ){
+    //       if ( this.router.url !== "/login"){
+    //         console.log('  unauthorized user ! -> to singin')
+    //         this.router.navigate(['/login']);
+    //       }
+    //     }
+    //   },
+    //   (err) => {
+    //     console.log('err ----------> ', err)
+    //   }
+    // )
     
   }
 

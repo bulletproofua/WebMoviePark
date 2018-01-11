@@ -1,7 +1,4 @@
-<nav [ngClass]="{
-    'navbar navbar-default': isAuthorized == true,
-    'hide': isAuthorized != true
-  }">
+<nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -16,13 +13,24 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a routerLink="/Movies"> Movies</a></li>
-        <li><a routerLink="/Recommendations"> Recommendations </a></li>
-        <li><a routerLink="/admin"> admin </a></li>
+        <li *ngIf="this.isAuthorized"><a routerLink="/Recommendations"> Recommendations </a></li>
+        <!-- <li><a routerLink="/admin"> admin </a></li> -->
       </ul>
-      <ul class="nav navbar-nav pull-right">
+      <ul *ngIf="this.isAuthorized" class="nav navbar-nav pull-right">
           <li ><a (click)="onOpenProfile()"><i class="fa fa-user"></i> Hello : {{userName}}</a></li>
           <li ><a (click)="logout()"><i class="fa fa-sign-out"></i> Log out</a></li>        
+      </ul>
+
+      <ul *ngIf="!this.isAuthorized" class="nav navbar-nav pull-right">
+        <li ><a (click)="toLogin()"><i class="fa fa-sign-out"></i>Sign in / Sign up</a></li>        
       </ul>
     </div>
   </div>
 </nav>
+
+
+<!-- 
+[ngClass]="{
+  'navbar navbar-default': isAuthorized == true,
+  'hide': isAuthorized != true
+}" -->

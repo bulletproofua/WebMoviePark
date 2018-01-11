@@ -29,12 +29,12 @@ export class MainpageComponent implements OnInit, OnDestroy {
 
     let userData = this.LoopBackAuth.getCurrentUserData();
     
-    if( userData === null || userData === undefined ){            
-        console.log("    unauthorized user ! -> to login")
-      this.router.navigate(['/login']);
-    } else {
+    // if( userData === null || userData === undefined ){            
+    //     console.log("    unauthorized user ! -> to login")
+    //   this.router.navigate(['/login']);
+    // } else {
       this.setup();
-    }
+    // }
 
   }
 

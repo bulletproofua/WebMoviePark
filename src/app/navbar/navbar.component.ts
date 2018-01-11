@@ -43,6 +43,10 @@ export class NavbarComponent implements OnInit, DoCheck, OnDestroy {
     this.router.navigate(['/login']);
   }
 
+  toLogin(){
+    this.router.navigate(['/login']);
+  }
+
   ngOnDestroy() {
     console.log('ngOnDestroy______ NAVBAR', )
   }
