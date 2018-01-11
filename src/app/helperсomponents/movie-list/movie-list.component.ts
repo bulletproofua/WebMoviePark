@@ -1,6 +1,6 @@
 import { Component, Input, Output, ViewChild } from '@angular/core';
 import { EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Movies, FireLoopRef } from '../../shared/sdk/models';
 import { Subscription } from 'rxjs/Subscription';
 import { OnChanges, SimpleChanges, OnDestroy, OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
@@ -29,10 +29,12 @@ export class MovieListComponent implements OnChanges, OnDestroy, OnInit {
     private serviceSub: Subscription;
     private data: any[];
     _service: any;
+
     
     constructor(
         private userApi : UserApi, 
         private router : Router, 
+        private route: ActivatedRoute,
         private MoviesApi: MoviesApi, 
         private UsersMoviesApi: UsersMoviesApi,
         private LoopBackAuth: LoopBackAuth,
@@ -52,9 +54,11 @@ export class MovieListComponent implements OnChanges, OnDestroy, OnInit {
     }
     
     ngOnInit(){
-        // if( this.filter ){
+        if(  this.router.url == "/Movies" ){
             this.filter.limit = 24;
-        // }
+        } else {
+            this.filter.limit = 100;
+        }       
     }
 
     setup(){
@@ -210,7 +214,6 @@ export class MovieListComponent implements OnChanges, OnDestroy, OnInit {
 
         this.router.navigateByUrl('/Movie/' + event.MovieId);
         // this.selected.emit(context);
-        
     }
 
     onLoadMore(){

@@ -47,6 +47,6 @@
   </div>
 
 </div>
-<div class="col-md-12 footer-btn">
+<div *ngIf="router.url == '/Movies'" class="col-md-12 footer-btn">
   <button (click)="onLoadMore()" class="btn btn-primary"> Load more </button>
 </div>

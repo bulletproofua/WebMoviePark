@@ -4,7 +4,7 @@
     <div class="col-md-12 col-md-offset-0 select-btn top-block">
       <button [ngClass] = "{ 'selected': CFstatus }" (click)="onCollaborativefiltering()" type="button" class="btn btn-success"> Collaborative filtering </button>
       <button [ngClass] = "{ 'selected': AprioriStatus }" (click)="onApriori()" type="button" class="btn btn-success"> Apriori </button>
-      <button [ngClass] = "{ 'selected': AACFstatus }" (click)="onApriorialgorithmAndCollaborativefiltering()" type="button" class="btn btn-success"> ApriorialgorithmAndCollaborativefiltering </button>
+      <button [ngClass] = "{ 'selected': AACFstatus }" (click)="onApriorialgorithmAndCollaborativefiltering()" type="button" class="btn btn-success"> Combined algorithm </button>
     </div>
       <app-movie-list
         [fields]="fields"
