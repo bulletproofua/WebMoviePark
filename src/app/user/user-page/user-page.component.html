@@ -1,10 +1,14 @@
 <app-navbar></app-navbar>
 <div class="container">
   <div class="row">
-     
-  <div class="title">
-      <p> {{User.username}}'s list</p>
-  </div>
+    <div class="header">
+      <div class="title">
+          <p> Email: {{User.email}} </p>
+          <p> Number of the rated movies: {{ userMoviesCount || '0' }} </p>
+          <p> Your average rating: {{ AVGRating.toFixed(1) || '0' }} </p>
+      </div>
+    </div>
+
     <app-movie-list
       [service]="serviceRef" 
       [userMode]="true"

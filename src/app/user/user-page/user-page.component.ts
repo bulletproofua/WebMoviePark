@@ -21,6 +21,9 @@ export class UserPageComponent implements OnInit {
 
   private User: any;
 
+  private userMoviesCount: number;
+  private AVGRating: number = 0;
+
   constructor (
     private LoopBackAuth: LoopBackAuth, 
     private router: Router, 
@@ -44,6 +47,19 @@ export class UserPageComponent implements OnInit {
               }
         }
       ], where:{ UsersMovies: {neq: undefined}}, order: 'MovieId DESC', limit:50};
+
+      this.UsersMoviesApi.find( { where: { "UserId": this.LoopBackAuth.getCurrentUserId() }}).subscribe(
+        ( res: any ) => {
+          this.userMoviesCount = res.length;
+
+          res.forEach(element => {
+            this.AVGRating += element.Rating; 
+          });
+
+          this.AVGRating = this.AVGRating/this.userMoviesCount;
+          
+        }
+      )
 
   }
 
