@@ -11,9 +11,37 @@ p {
 
 .header {
     margin-bottom: 10px;
+    font-family: 'Passion One Regular', sans-serif;
 }
 
 .container {
     margin-top: 70px;
 }
+
+.ratedMoviesBlock {
+    margin-right: 58px;
+    margin-left: 58px;
+}
+
+.ratedMoviesBlock, .averageRatingBlock {
+    display: inline-block;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    border: 2px solid black;
+    border-radius: 50%;
+    background-color: #dddddd;
+
+    .ratedMoviesValue, .averageRatingValue {
+        font-size: 40px;
+        padding-top: 15%;
+    }
+
+    .ratedMoviesLabel, .averageRatingLabel {
+        font-size: 20px;
+        margin-top: -16px;
+    }
+}
+
+
 

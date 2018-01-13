@@ -2,10 +2,17 @@
 <div class="container">
   <div class="row">
     <div class="header">
-      <div class="title">
-          <p> Email: {{User.email}} </p>
-          <p> Number of the rated movies: {{ userMoviesCount || '0' }} </p>
-          <p> Your average rating: {{ AVGRating.toFixed(1) || '0' }} </p>
+        <div class="row">
+          <div class="col-md-offset-4 col-md-12 col-sm-offset-3 col-sm-12 col-xs-offset-2 col-xs-12">
+              <div class="ratedMoviesBlock">
+                <div class="ratedMoviesValue">{{ userMoviesCount || '0' }}</div>
+                <div class="ratedMoviesLabel">movies</div>
+              </div>
+              <div class="averageRatingBlock">
+                <div class="averageRatingValue">{{ AVGRating.toFixed(1) || '0' }}</div>
+                <div class="averageRatingLabel">/ 10</div>
+              </div>
+          </div>         
       </div>
     </div>
 

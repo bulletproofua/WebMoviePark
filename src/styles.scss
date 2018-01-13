@@ -9,7 +9,12 @@ $maxNumOfStars: 2;
 $color-positive-rating: #131b09 !default;
 @import "../node_modules/angular-star-rating/assets/scss/star-rating.scss";
 
+@font-face {
+    font-family: "Passion One Regular";
+    src: url("/assets/fonts/PassionOne/PassionOne-Regular.ttf") format("truetype"),
+}
+
 html, body {
-    background-color: white;
+    background: url('/assets/images/background.png') repeat;
     color: black;
 }
