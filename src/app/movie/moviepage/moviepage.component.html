@@ -1,5 +1,52 @@
 <app-navbar></app-navbar>
 <div class="container">
+    <div class="row">
+        <div class="movie">
+            <div class="poster"> 
+                <img class="img" src="assets/{{IMG.Link}}" alt="{{IMG.Title}}">
+                <div class="rating-box">
+                    <div class="ratedMoviesBlock">
+                        <div class="ratedMoviesValue">{{ curentMovieInfo.IMDb || '-' }}</div>
+                        <div class="ratedMoviesLabel">IMDb</div>
+                    </div>
+                    <div class="ratedMoviesBlock">
+                        <div class="ratedMoviesValue">{{ curentMovieInfo.Metacritic || '-' }}</div>
+                        <div class="ratedMoviesLabel">Metacritic</div>
+                    </div>
+                    <div class="ratedMoviesBlock">
+                        <div class="ratedMoviesValue">{{ curentMovieInfo.MP || '-' }}</div>
+                        <div class="ratedMoviesLabel">MP</div>
+                    </div>
+                </div>
+            </div>
+            <div class="info">
+                <h3 *ngIf="curentMovieInfo.Title" class="title-movie" >{{curentMovieInfo.Title}}</h3>
+                <p *ngIf="curentMovieInfo.PremiereDate">  <span class="title-row">Premiere date</span>:  {{curentMovieInfo.PremiereDate | date:'dd MMMM yyyy'}}</p>
+                <p *ngIf="curentMovieInfo.Slogan">  <span class="title-row">Slogan</span> :        {{curentMovieInfo.Slogan}}</p>
+                <p *ngIf="curentMovieInfo.Length">  <span class="title-row">Length</span>  :        {{curentMovieInfo.Length}} min</p>
+                
+                <p> <span class="title-row">Genres</span> : <span *ngFor="let element of curentMovieInfo.Genres"> {{ element }}</span> </p>
+  
+                <p> <span class="title-row">Countries</span> : <span *ngFor="let element of curentMovieInfo.Countries"> {{ element }}</span> </p>
+                
+                <p *ngIf="curentMovieInfo.Budget"> <span class="title-row">Budget</span> :        {{curentMovieInfo.Budget}}</p>
+                
+                <p *ngIf="curentMovieInfo.RatingAgeLimit"> <span class="title-row">Age limit</span> :     {{curentMovieInfo.RatingAgeLimit}}</p>
+                <p *ngIf="curentMovieInfo.Description">    <span class="title-row">Description</span> :   {{curentMovieInfo.Description}}</p>
 
+                <!-- <p *ngIf="curentMovieInfo.TotalViews"> <span class="title-row">Total views</span>:   {{curentMovieInfo.TotalViews}} </p> -->
+                
+                <!-- <p class="ratings-title">  <span class="title-row">Ratings</span> </p>
+                <div class="ratings">
+                    <p *ngIf="curentMovieInfo.IMDb">        <span class="rating-row">IMDb</span>  :                {{ curentMovieInfo.IMDb}} </p> 
+                    <p *ngIf="curentMovieInfo.Metacritic">  <span class="rating-row">Metacritic</span>:    {{ curentMovieInfo.Metacritic }} </p>  
+                    <p *ngIf="curentMovieInfo.MP">          <span class="rating-row">MP</span> :                    {{ curentMovieInfo.Rating}}</p>  
+                </div> -->
+                <div  class="trailer">
+                    <iframe *ngIf="displayIframe" [src]='sanitizer.bypassSecurityTrustResourceUrl(this.curentMovieInfo.TrailerLink)' frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
-

@@ -40,13 +40,13 @@
         [staticColor]="'positive'"
         
 
-        (onClick)="onClick($event, movie.MovieId)"
+        (onClick)="onSelectRating($event, movie.MovieId)"
         (onRatingChange)="onRatingChange($event, movie.MovieId)"
       ></star-rating-comp>
     </div>
   </div>
 
 </div>
-<div *ngIf="router.url == '/Movies'" class="col-md-12 footer-btn">
+<div *ngIf="router.url == '/Movies' || router.url == '/User' " class="col-md-12 footer-btn">
   <button (click)="onLoadMore()" class="btn btn-primary"> Load more </button>
 </div>

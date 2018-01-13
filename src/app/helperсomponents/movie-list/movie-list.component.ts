@@ -48,8 +48,6 @@ export class MovieListComponent implements OnChanges, OnDestroy, OnInit {
     @Input() set service(ref: any) {
         if (ref) {
             this._service = ref;
-            console.log('   ----------> this._service', this._service)
-            // this.setup();
         }
     }
     
@@ -62,23 +60,19 @@ export class MovieListComponent implements OnChanges, OnDestroy, OnInit {
     }
 
     setup(){
-        console.log('   setup----->')
         
         this.ngOnDestroy();
 
         if( this.filter ) { 
-            console.log('   --> this.filter', this.filter)
 
             // if( this.serviceSub ) {
             //     this.serviceSub.unsubscribe();
             // }
-            console.log('this._service', this._service)
-            console.log('serviceSub', this.serviceSub)
+
             this.serviceSub =  this.MoviesApi.find( this.filter).subscribe(        //this._service.on('change', this.filter ).subscribe(
                 (instances: any) => {
                     console.log('instances', instances)
-                    if (instances instanceof Array) {                              
-                        //   instances.length = 20;
+                    if (instances instanceof Array) {   
                         this.data = instances;
                         this.data.forEach( (val, index) => {                             
                             this.ExternalServicesRatingsApi.find( { where: { "MovieId" :val.MovieId }}).subscribe(
@@ -133,7 +127,6 @@ export class MovieListComponent implements OnChanges, OnDestroy, OnInit {
                         })
 
                         this.data = _.without( this.data , undefined) 
-                        console.log('data', this.data)
                     } else {
                         console.log(" movie-list.component errors 1  : ", instances.error);
                     }
@@ -162,10 +155,7 @@ export class MovieListComponent implements OnChanges, OnDestroy, OnInit {
         // console.log('single onRatingChange rating: ', $event.rating);   
     }
     
-    onClick($event: OnClickEvent, MovieId: any): void {
-        console.log('single onClick rating: ', $event.rating);
-        console.log('this.LoopBackAuth.getCurrentUserId(),', this.LoopBackAuth.getCurrentUserId())
-        console.log('MovieId', MovieId)
+    onSelectRating($event: OnClickEvent, MovieId: any): void {
         this.UsersMoviesApi.find(
             {where:{ 
                 "UserId": this.LoopBackAuth.getCurrentUserId(),

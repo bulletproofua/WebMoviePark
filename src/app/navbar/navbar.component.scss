@@ -1,5 +1,13 @@
 @import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 .navbar {
-    background-color: #ccc;
+    background-color: rgba(204, 204, 204, 0.788);
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: black;
+}
+
+.navbar-default .navbar-brand {
+    color: black;
 }
