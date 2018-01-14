@@ -38,9 +38,8 @@
         [hoverEnabled]="true"
         [labelPosition]="'right'"
         [staticColor]="'positive'"
-        
 
-        (onClick)="onSelectRating($event, movie.MovieId)"
+        (onClick)="onSelectRating($event, movie)"
         (onRatingChange)="onRatingChange($event, movie.MovieId)"
       ></star-rating-comp>
     </div>

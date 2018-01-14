@@ -155,11 +155,11 @@ export class MovieListComponent implements OnChanges, OnDestroy, OnInit {
         // console.log('single onRatingChange rating: ', $event.rating);   
     }
     
-    onSelectRating($event: OnClickEvent, MovieId: any): void {
+    onSelectRating($event: OnClickEvent, movie: any): void {
         this.UsersMoviesApi.find(
             {where:{ 
                 "UserId": this.LoopBackAuth.getCurrentUserId(),
-                 "MovieId": MovieId}
+                 "MovieId": movie.MovieId}
                 }
             ).subscribe(
 
@@ -172,23 +172,25 @@ export class MovieListComponent implements OnChanges, OnDestroy, OnInit {
                         res[0].UserMovieId, 
                         { 
                             "UserId": this.LoopBackAuth.getCurrentUserId(),
-                            "MovieId": MovieId,
+                            "MovieId": movie.MovieId,
                             "Rating": $event.rating //* 2
                         }
                     ).subscribe(
                         res => {
                             console.log('upsert res', res)
+                            movie.UsersMovies[0].Rating = $event.rating;
                         }
                     )
                 }  else {
                     this.UsersMoviesApi.upsert({
                         "UsersMovies": "",
                         "UserId": this.LoopBackAuth.getCurrentUserId(),
-                        "MovieId": MovieId,
+                        "MovieId": movie.MovieId,
                         "Rating": $event.rating //* 2
                     }).subscribe(
                         res => {
-                            console.log('upsert res', res)    
+                            console.log('upsert res', res)   
+                            movie.UsersMovies[0].Rating = $event.rating; 
                         }
                     )
                 }
