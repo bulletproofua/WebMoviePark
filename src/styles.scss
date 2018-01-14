@@ -5,8 +5,8 @@
 // @import "~angular-star-rating/assets/scss/star-rating";
 
 
-$maxNumOfStars: 2;
-$color-positive-rating: #131b09 !default;
+$numOfStars: 10;
+$color-positive-rating: #f9c10f !default;
 @import "../node_modules/angular-star-rating/assets/scss/star-rating.scss";
 
 @font-face {

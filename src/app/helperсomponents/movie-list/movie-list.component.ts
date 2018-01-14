@@ -53,7 +53,7 @@ export class MovieListComponent implements OnChanges, OnDestroy, OnInit {
     
     ngOnInit(){
         if(  this.router.url == "/Movies" ){
-            this.filter.limit = 24;
+            this.filter.limit = 25;
         } else {
             this.filter.limit = 100;
         }       
@@ -208,7 +208,7 @@ export class MovieListComponent implements OnChanges, OnDestroy, OnInit {
 
     onLoadMore(){
         console.log('onLoadMore')
-        this.filter.limit += 12;
+        this.filter.limit += 15;
         // console.log('this.filter', this.filter)
         this.setup();
 

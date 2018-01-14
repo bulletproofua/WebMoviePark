@@ -11,3 +11,19 @@
 .navbar-default .navbar-brand {
     color: black;
 }
+
+a:after {
+        background-color: #000000;
+        display: block;
+        content: "";
+        height: 1px;
+        width: 0%;
+        -webkit-transition: width .3s ease-in-out;
+        -moz--transition: width .3s ease-in-out;
+        transition: width .3s ease-in-out;
+    }
+
+a:hover:after,
+a:focus:after {
+    width: 100%;
+}
