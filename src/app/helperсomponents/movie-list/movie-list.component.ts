@@ -55,7 +55,7 @@ export class MovieListComponent implements OnChanges, OnDestroy, OnInit {
         if(  this.router.url == "/Movies" ){
             this.filter.limit = 25;
         } else {
-            this.filter.limit = 100;
+            if (this.filter) this.filter.limit = 100;
         }       
     }
 
