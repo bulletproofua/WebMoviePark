@@ -50,6 +50,14 @@ img {
     // margin-bottom: 10px;
 }
 
+.list {
+    .movie {
+        .content, .rating{
+            cursor: pointer;
+        }
+    }
+}
+
 div.filmName {
     height: 20px;
     text-align: center;
@@ -89,7 +97,6 @@ div.filmName {
 }
 
 .footer-btn {
-    background-color: white;
     text-align: center;
     padding: 20px 0px;
 }
